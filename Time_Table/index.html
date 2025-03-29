@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+
+<header>
+    <meta charset="UTF-8">
+    <h1>타임테이블 제작기</h1>
+    <nav>
+        <ul>
+            <li><a href="#">홈</a></li>
+            <li><a href="#">맛집 찾기</a></li>
+        </ul>
+    </nav>
+    <link href="/src/styles.css" rel="stylesheet">
+</header>
+
+<aside>
+
+</aside>
+
+<main style = "background-color:lightblue ;width:80%;height:60%; border : 2px solid black; margin : auto">
+
+    <article style = "width:80%; height:50%; border : 2px solid black; margin : auto" >
+        <span class="grid-cols-3">
+            <span class="grid-cols-3 gap-4" style = "width:50%; display: inline-grid ; border : 2px solid black" >
+                <input type="text" name="Member Number" value = 50>
+                <input type="text" name="split" value = 5>
+            </span>
+            <span class="grid-cols-3 gap-4" style = "width:50%; display: inline-grid ; border : 2px solid black">
+                <input type="text" name="Day to" value = 31>
+                <input type="text" name="Date" value = 4>
+            </span>
+        </span>
+    </article>
+
+    <section style = "width:80%;height:20%; border : 2px solid black; margin : auto" >
+        <h3>시간대 조절 슬라이더</h3>
+        <div class="perHourContainer">
+            <input type="range" min="1" max="48" value="50" class="slider" id="perHour">
+        </div>
+    </section>
+
+</main>
+
+<footer style = "width:100%;height:50px;border : 2px solid black ; background-color:lightblue">
+    <input type="submit" value="생성">
+    <label>
+        <input role="switch" type="checkbox" />
+        <span>개발자 코멘트 보기</span>
+    </label>
+</footer>
+
+</html>
