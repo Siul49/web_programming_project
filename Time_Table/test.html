@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네비게이션 바 예제</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<nav class="bg-blue-500 p-4">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="text-white text-2xl font-semibold">로고</div>
+    <div class="hidden md:flex space-x-4">
+      <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-lg">홈</a>
+      <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-lg">서비스</a>
+      <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-lg">팀</a>
+      <a href="#" class="text-white hover:bg-blue-700 px-4 py-2 rounded-lg">연락처</a>
+    </div>
+    <div class="md:hidden">
+      <button class="text-white">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
