@@ -630,3 +630,7 @@ video {
   --tw-text-opacity: 1;
   color: rgb(74 222 128 / var(--tw-text-opacity, 1));
 }
+
+.border_shadow_round{
+  @apply border-black border-[5px] shadow-[5px_5px_0px_black] rounded-3xl mt-12 z-20
+}
