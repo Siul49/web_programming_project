@@ -8,21 +8,40 @@
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
-<body class="bg-[#BADBAF] h-screen flex justify-center items-center">
+<body class="bg-[#FEE9CE] h-screen flex justify-center items-center">
 
 <!-- 전체 화면 영역 (흰색 바탕 틀) -->
 <div class='relative w-[72%] h-[80%] bg-white border-shadow-round mt-6'></div>
 
 <!-- 초록색 하단 시간 영역 -->
-<div class='absolute w-[68%] h-[35%] bottom-[12%] bg-[#2BF994] border-shadow-round mt-12 z-20'>
-  <div class='relative w-full h-[20%] bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20'></div>
-  <input type="range" min="0" max="48" value="24" id="minRange"
-         class="absolute w-[80%] h-[5%] bottom-[10%] bg-transparent appearance-none pointer-events-none [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:bg-blue-500 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer">
+<div class='absolute w-[68%] h-[35%] bottom-[12%] bg-[#BBDBF4] border-shadow-round mt-12 z-20 w-full flex justify-center'>
+  <div class='relative w-full h-[20%] top-0 bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20'></div>
 
+  <div class="absolute w-[80%] h-[5%] bottom-[20%] bg-gray-300 border-black border-[5px] rounded-xl -translate-y-1/2"></div>
+  <input type="range" min="0" max="48" value="0" id="minRange"
+         class=" absolute w-[80%] h-[5%] bottom-[20%] bg-transparent appearance-none pointer-events-none
+      [&::-webkit-slider-thumb]:appearance-none
+      [&::-webkit-slider-thumb]:pointer-events-auto
+      [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
+      [&::-webkit-slider-thumb]:bg-[url('../resource/downtriangle.png']]
+      [&::-webkit-slider-thumb]:bg-no-repeat
+      [&::-webkit-slider-thumb]:bg-center
+      [&::-webkit-slider-thumb]:bg-contain
+      [&::-webkit-slider-thumb]:cursor-pointer">
+  <input type="range" min="0" max="48" value="48" id="maxRange"
+         class=" absolute w-[80%] h-[5%] bottom-[20%] bg-transparent appearance-none pointer-events-none
+      [&::-webkit-slider-thumb]:appearance-none
+      [&::-webkit-slider-thumb]:pointer-events-auto
+      [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
+      [&::-webkit-slider-thumb]:bg-red-500
+      [&::-webkit-slider-thumb]:bg-no-repeat
+      [&::-webkit-slider-thumb]:bg-center
+      [&::-webkit-slider-thumb]:bg-contain
+      [&::-webkit-slider-thumb]:cursor-pointer">
 </div>
 
 <!-- 파란 영역 (전체 인원 / 팀당 인원 조작 패널) -->
-<div class='absolute w-[35%] h-[35%] left-[16%] top-[10%] bg-[#4DC9FF] border-shadow-round mt-12 z-20'>
+<div class='absolute w-[35%] h-[35%] left-[16%] top-[10%] bg-[#D3D594] border-shadow-round mt-12 z-20'>
 
   <!-- 상단 탭바 -->
   <div class='relative w-full h-[20%] bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20'></div>
@@ -30,16 +49,16 @@
   <!-- 위쪽 삼각 버튼들 (인원 증가) -->
   <div class="relative top-[10%]">
     <button class="relative left-[15%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[25%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[35%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[55%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
   </div>
 
@@ -54,22 +73,22 @@
   <!-- 아래쪽 삼각 버튼들 (인원 감소) -->
   <div class="relative top-[20%]">
     <button class="relative left-[15%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[25%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[35%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[55%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
   </div>
 </div>
 
 <!-- 보라 영역 (날짜/요일 입력 패널) -->
-<div class='absolute w-[31%] h-[33%] right-[16%] top-[25%] bg-[#CD76FF] border-shadow-round mt-12 z-20'>
+<div class='absolute w-[31%] h-[33%] right-[16%] top-[25%] bg-[#FFC5D3] border-shadow-round mt-12 z-20'>
 
   <!-- 상단 탭바 -->
   <div class='relative w-full h-[20%] bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20'></div>
@@ -77,13 +96,13 @@
   <!-- 위쪽 버튼 (날짜 증가) -->
   <div class="relative top-[10%]">
     <button class="relative left-[20%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[30%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[60%] hover:opacity-70">
-      <img src="/resourse/uptriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/uptriangle.png" alt="재생" class="w-65 h-31">
     </button>
   </div>
 
@@ -98,22 +117,22 @@
   <!-- 아래쪽 버튼 (날짜 감소) -->
   <div class="relative top-[20%]">
     <button class="relative left-[20%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[30%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
     <button class="relative left-[60%] hover:opacity-70">
-      <img src="/resourse/downtriangle.png" alt="재생" class="w-65 h-31">
+      <img src="../resource/downtriangle.png" alt="재생" class="w-65 h-31">
     </button>
   </div>
 </div>
 
 <!-- 노란 버튼 (다음으로?) -->
-<div class='absolute w-[20%] h-[12%] right-[17%] top-[10%] bg-[#FDD80A] border-shadow-round mt-12 z-20'>※다음으로※</div>
+<div class='absolute w-[20%] h-[12%] right-[17%] top-[10%] bg-[#FDE295] border-shadow-round mt-12 z-20'>※다음으로※</div>
 
 <!-- 주황/회색 구분 블록 -->
-<div class='absolute w-[10%] h-[7%] right-[38%] top-[10%] bg-[#F56E38] border-shadow-round mt-12 z-20'>한글↔ENG</div>
+<div class='absolute w-[10%] h-[7%] right-[38%] top-[10%] bg-[#EFCCF2] border-shadow-round mt-12 z-20'>한글↔ENG</div>
 <div class='absolute w-[10%] h-[4%] right-[38%] top-[18%] bg-[#D9D9D9] border-shadow-round mt-12 z-20'>제작자 코멘트</div>
 
 </body>

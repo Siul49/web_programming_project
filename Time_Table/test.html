@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3 Team UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'GmarketSansMedium', sans-serif;
+        }
+        .shadow-box {
+            box-shadow: 4px 4px 0 #000;
+        }
+    </style>
+</head>
+<body class="bg-[#fff4eb] p-4">
+<!-- 상단 라벨 -->
+<div class="bg-[#f9a8d4] w-fit px-6 py-2 rounded-tl-[30px] rounded-br-[30px] border-4 border-black text-3xl font-bold shadow-box">
+    3 Team...?
+</div>
+
+<!-- 본문 카드 -->
+<div class="relative max-w-5xl mx-auto mt-4 bg-white border-4 border-black rounded-xl p-6 shadow-box">
+    <!-- 탭 라벨 -->
+    <div class="absolute -top-5 left-4 bg-[#fde68a] text-black px-4 py-1 rounded-t-lg text-sm border border-black shadow-box">
+        ※타임테이블_페이지
+    </div>
+
+    <!-- 우측 상단 버튼 -->
+    <div class="absolute top-4 right-4 space-y-2">
+        <button class="bg-white border border-black rounded px-3 py-1 text-sm">한글 ↔ ENG</button><br>
+        <button class="bg-white border border-black rounded px-3 py-1 text-sm">개발자 코멘트</button><br>
+        <button class="bg-[#fde047] border-2 border-black rounded px-5 py-2 text-lg font-bold shadow-box">※다음으로※</button>
+    </div>
+
+    <!-- 인원 수 카드 -->
+    <div class="bg-[#d9d99b] border-4 border-black rounded-xl p-4 mb-6">
+        <div class="mb-2">전체 인원 수, 팀 당 인원 수 입력</div>
+        <div class="flex items-center gap-4">
+            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">150</div>
+            <span class="text-xl">명</span>
+            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">3</div>
+            <span class="text-xl">명씩</span>
+        </div>
+    </div>
+
+    <!-- 날짜 카드 -->
+    <div class="bg-[#f9caca] border-4 border-black rounded-xl p-4 mb-6">
+        <div class="mb-2">시작일, 기간 입력</div>
+        <div class="flex items-center gap-4">
+            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">07</div>
+            <span class="text-xl">일부터</span>
+            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">3</div>
+            <span class="text-xl">일간</span>
+        </div>
+    </div>
+
+    <!-- 시간 설정 카드 -->
+    <div class="bg-[#c6dbf9] border-4 border-black rounded-xl p-4">
+        <div class="mb-2">시작 시간과 종료 시간, 팀 당 배정될 시간 입력</div>
+        <div class="flex items-center justify-between">
+            <div class="bg-white border border-black px-3 py-1 rounded">1</div>
+            <div class="flex-grow mx-4">
+                <div class="w-full h-4 bg-[#faebd7] rounded relative">
+                    <div class="absolute left-0 top-0 h-4 w-full border-l-4 border-r-4 border-black"></div>
+                </div>
+            </div>
+            <div class="bg-white border border-black px-3 py-1 rounded">24</div>
+        </div>
+        <div class="flex justify-center gap-4 mt-4">
+            <button class="bg-[#fef08a] border border-black px-4 py-1 rounded">-5</button>
+            <div class="bg-white border-2 border-black px-6 py-2 text-xl">30</div>
+            <button class="bg-[#fef08a] border border-black px-4 py-1 rounded">+5</button>
+        </div>
+    </div>
+</div>
+
+<!-- 하단 크레딧 -->
+<p class="text-center text-xs mt-4">(⌐▨_▨) @ 어쩌구 저쩌구~~</p>
+</body>
+</html>
