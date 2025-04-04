@@ -1,82 +1,120 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3 Team UI</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'GmarketSansMedium', sans-serif;
-        }
-        .shadow-box {
-            box-shadow: 4px 4px 0 #000;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임테이블 페이지 1</title>
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body class="bg-[#fff4eb] p-4">
-<!-- 상단 라벨 -->
-<div class="bg-[#f9a8d4] w-fit px-6 py-2 rounded-tl-[30px] rounded-br-[30px] border-4 border-black text-3xl font-bold shadow-box">
-    3 Team...?
-</div>
 
-<!-- 본문 카드 -->
-<div class="relative max-w-5xl mx-auto mt-4 bg-white border-4 border-black rounded-xl p-6 shadow-box">
-    <!-- 탭 라벨 -->
-    <div class="absolute -top-5 left-4 bg-[#fde68a] text-black px-4 py-1 rounded-t-lg text-sm border border-black shadow-box">
-        ※타임테이블_페이지
-    </div>
+<body class="bg-[#FEE9CE] min-h-screen flex justify-center items-center p-4">
 
-    <!-- 우측 상단 버튼 -->
-    <div class="absolute top-4 right-4 space-y-2">
-        <button class="bg-white border border-black rounded px-3 py-1 text-sm">한글 ↔ ENG</button><br>
-        <button class="bg-white border border-black rounded px-3 py-1 text-sm">개발자 코멘트</button><br>
-        <button class="bg-[#fde047] border-2 border-black rounded px-5 py-2 text-lg font-bold shadow-box">※다음으로※</button>
-    </div>
+<!-- 전체 틀 -->
+<div class="w-full max-w-[1400px] h-full bg-white rounded-3xl shadow-md flex flex-col gap-6 p-6">
 
-    <!-- 인원 수 카드 -->
-    <div class="bg-[#d9d99b] border-4 border-black rounded-xl p-4 mb-6">
-        <div class="mb-2">전체 인원 수, 팀 당 인원 수 입력</div>
-        <div class="flex items-center gap-4">
-            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">150</div>
-            <span class="text-xl">명</span>
-            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">3</div>
-            <span class="text-xl">명씩</span>
-        </div>
-    </div>
+    <!-- 상단 구역 -->
+    <div class="flex flex-wrap justify-between items-start gap-6 w-full">
 
-    <!-- 날짜 카드 -->
-    <div class="bg-[#f9caca] border-4 border-black rounded-xl p-4 mb-6">
-        <div class="mb-2">시작일, 기간 입력</div>
-        <div class="flex items-center gap-4">
-            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">07</div>
-            <span class="text-xl">일부터</span>
-            <div class="bg-white border-2 border-black rounded px-6 py-2 text-2xl">3</div>
-            <span class="text-xl">일간</span>
-        </div>
-    </div>
+        <!-- 노랑 영역 (전체 인원 / 팀당 인원) -->
+        <div class="flex-1 min-w-[300px] bg-[#D3D594] rounded-2xl shadow-md p-4 flex flex-col items-center gap-4">
+            <!-- 상단 탭바 -->
+            <div class="w-full h-12 bg-white border-b-[5px] border-black rounded-t-2xl"></div>
 
-    <!-- 시간 설정 카드 -->
-    <div class="bg-[#c6dbf9] border-4 border-black rounded-xl p-4">
-        <div class="mb-2">시작 시간과 종료 시간, 팀 당 배정될 시간 입력</div>
-        <div class="flex items-center justify-between">
-            <div class="bg-white border border-black px-3 py-1 rounded">1</div>
-            <div class="flex-grow mx-4">
-                <div class="w-full h-4 bg-[#faebd7] rounded relative">
-                    <div class="absolute left-0 top-0 h-4 w-full border-l-4 border-r-4 border-black"></div>
-                </div>
+            <!-- 증가 버튼 -->
+            <div class="flex justify-center gap-4">
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
             </div>
-            <div class="bg-white border border-black px-3 py-1 rounded">24</div>
+
+            <!-- 입력창 -->
+            <div class="flex items-center justify-center gap-6">
+                <input type="text" maxlength="3" value="100" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       class="w-36 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white tracking-[0.5em]" />
+                <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       class="w-16 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white" />
+            </div>
+
+            <!-- 감소 버튼 -->
+            <div class="flex justify-center gap-4">
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+            </div>
         </div>
-        <div class="flex justify-center gap-4 mt-4">
-            <button class="bg-[#fef08a] border border-black px-4 py-1 rounded">-5</button>
-            <div class="bg-white border-2 border-black px-6 py-2 text-xl">30</div>
-            <button class="bg-[#fef08a] border border-black px-4 py-1 rounded">+5</button>
+
+        <!-- 분홍 영역 (날짜 입력) -->
+        <div class="flex-1 min-w-[300px] bg-[#FFC5D3] rounded-2xl shadow-md p-4 flex flex-col items-center gap-4">
+            <!-- 상단 탭바 -->
+            <div class="w-full h-12 bg-white border-b-[5px] border-black rounded-t-2xl"></div>
+
+            <!-- 증가 버튼 -->
+            <div class="flex justify-center gap-4">
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+            </div>
+
+            <!-- 입력창 -->
+            <div class="flex items-center gap-6">
+                <input type="text" maxlength="2" value="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       class="w-24 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white tracking-[0.5em]" />
+                <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       class="w-16 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white" />
+            </div>
+
+            <!-- 감소 버튼 -->
+            <div class="flex justify-center gap-4">
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
+            </div>
+        </div>
+
+        <!-- 노랑 버튼 다음으로 버튼 -->
+        <div class="w-[200px] h-[100px] bg-[#FDE295] rounded-2xl shadow-md text-center flex items-center justify-center text-xl font-bold">
+            ※다음으로※
+        </div>
+    </div>
+
+    <!-- 구분 버튼들 -->
+    <div class="flex gap-4 justify-end pr-4">
+        <div class="w-[120px] h-[50px] bg-[#EFCCF2] rounded-2xl shadow-md flex items-center justify-center">한글↔ENG</div>
+        <div class="w-[120px] h-[40px] bg-[#D9D9D9] rounded-2xl shadow-md flex items-center justify-center">제작자 코멘트</div>
+    </div>
+
+    <!-- 하단 시간 조절 패널 -->
+    <div class="w-full bg-[#BBDBF4] rounded-2xl shadow-inner flex flex-col items-center justify-center p-6 gap-4">
+        <!-- 상단 탭바 -->
+        <div class="w-full h-10 bg-white border-b-[5px] border-black rounded-t-2xl mb-4"></div>
+
+        <!-- 슬라이더바 -->
+        <div class="relative w-[80%]">
+            <div class="w-full h-4 bg-gray-300 border-[5px] border-black rounded-xl absolute top-1/2 -translate-y-1/2 z-0"></div>
+
+            <input type="range" min="0" max="48" value="0" id="minRange"
+                   class="w-full h-4 bg-transparent appearance-none absolute z-10
+          [&::-webkit-slider-thumb]:appearance-none
+          [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
+          [&::-webkit-slider-thumb]:bg-[url('../resource/downtriangle.png')]
+          [&::-webkit-slider-thumb]:bg-no-repeat
+          [&::-webkit-slider-thumb]:bg-center
+          [&::-webkit-slider-thumb]:bg-contain
+          [&::-webkit-slider-thumb]:cursor-pointer pointer-events-auto" />
+
+            <input type="range" min="0" max="48" value="48" id="maxRange"
+                   class="w-full h-4 bg-transparent appearance-none absolute z-10
+          [&::-webkit-slider-thumb]:appearance-none
+          [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
+          [&::-webkit-slider-thumb]:bg-red-500
+          [&::-webkit-slider-thumb]:bg-no-repeat
+          [&::-webkit-slider-thumb]:bg-center
+          [&::-webkit-slider-thumb]:bg-contain
+          [&::-webkit-slider-thumb]:cursor-pointer pointer-events-auto" />
         </div>
     </div>
 </div>
-
-<!-- 하단 크레딧 -->
-<p class="text-center text-xs mt-4">(⌐▨_▨) @ 어쩌구 저쩌구~~</p>
 </body>
 </html>

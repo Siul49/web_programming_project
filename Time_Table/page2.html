@@ -11,82 +11,128 @@
 
 <!-- 배경 -->
 <body class="
-    bg-[#BADBAF]
+    bg-[#FFFEE3]
     flex justify-center items-center h-screen
 ">
 
 <!-- 전체 컨테이너 (하얀색 박스) -->
 <div class="
-        relative
+        absolute
         w-[75%] h-[75vh]
         bg-white rounded-2xl
         shadow-[4px_4px_0px_black]
         border-4 border-black
         flex justify-center items-center
-    "></div>
+        text-5xl font-bold
+    ">
+    <span class="ml-[38%]">or</span>
+</div>
 
 
-<!-- 초록색 박스 -->
+<!-- 하늘색 박스 -->
 <div class="
         absolute
         w-[44%] h-[65vh]
         right-[40%]
-        bg-[#2BF994] rounded-2xl
+        bg-[#BBDBF4] rounded-2xl
         shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center
+        text-2xl font-bold
+    ">
+    드래그 & 드롭, 클릭으로
+    <br> 파일 (.xlsx, etc) 첨부하기
+</div>
+
+<div class="absolute w-[24%] left-[32%] top-[30%] z-10">
+    <input
+            type = "file"
+            accept = ".xlsx"
+            class = "
+        w-full
+        p-2 rounded-lg
+        border-2 border-black
+        focus:outline-none
+        focus:ring-2
+        focus:ring-blue-400"
+    />
+</div>
 
 
 
 <!-- 노란색 박스 -->
-<div class="
+<button class="
         absolute
         w-[16%] h-[12vh]
         right-[16%] top-[18%]
-        bg-[#FDD80A] rounded-2xl
+        bg-[#FDE295] rounded-2xl
         drop-shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center items-center
+        text-5xl font-bold
+        hover:bg-yellow-400 transition-all
+    ">
+    ※생성하기※
+</button>
 
-<!-- 회색 박스 -->
+<!-- 연두색 박스 -->
 <div class="
         absolute
         w-[16%] h-[22vh]
         right-[16%] top-[32%]
-        bg-[#D9D9D9] rounded-2xl
+        bg-[#D3D594] rounded-2xl
         drop-shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-green-400 transition-all
+    ">
+</div>
 
-<!-- 주황색 박스 -->
-<div class="
+<!-- 분홍색 박스 -->
+<button class="
         absolute
         w-[10%] h-[7vh]
         right-[16%] top-[56%]
-        bg-[#F56E38] rounded-2xl
+        bg-[#FFC5D3] rounded-2xl
         drop-shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-pink-400 transition-all
+    ">
+    한글 -> ENG
+</button>
 
 <!-- 회색 박스 -->
-<div class="
+<button class="
         absolute
         w-[10%] h-[5vh]
         right-[16%] top-[64%]
         bg-[#D9D9D9] rounded-2xl
         drop-shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-black-400 transition-all
+    ">
+    개발자 코멘트
+</button>
 
 <!-- 보라색 박스 -->
-<div class="
+<button class="
         absolute
         w-[16%] h-[5vh]
         right-[16%] top-[78%]
         bg-[#CD76FF] rounded-2xl
         drop-shadow-[4px_4px_0px_black]
         border-4 border-black
-    "></div>
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-black-400 transition-all
+    ">
+    이전으로
+</button>
 
 </body>
 </html>
