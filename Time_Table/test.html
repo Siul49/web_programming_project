@@ -1,120 +1,94 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>타임테이블 페이지 1</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <meta charset="UTF-8" />
+    <title>웹 계산기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+<div class="bg-white p-6 rounded-2xl shadow-lg w-72">
+    <input
+            type="text"
+            id="display"
+            disabled
+            class="w-full h-12 text-right text-2xl px-4 mb-4 border border-gray-300 rounded-md bg-gray-50"
+    />
+    <div class="grid grid-cols-4 gap-3">
+        <button onclick="appendNumber('7')" class="btn">7</button>
+        <button onclick="appendNumber('8')" class="btn">8</button>
+        <button onclick="appendNumber('9')" class="btn">9</button>
+        <button onclick="setOperator('+')" class="btn bg-blue-200">+</button>
 
-<body class="bg-[#FEE9CE] min-h-screen flex justify-center items-center p-4">
+        <button onclick="appendNumber('4')" class="btn">4</button>
+        <button onclick="appendNumber('5')" class="btn">5</button>
+        <button onclick="appendNumber('6')" class="btn">6</button>
+        <button onclick="setOperator('-')" class="btn bg-blue-200">-</button>
 
-<!-- 전체 틀 -->
-<div class="w-full max-w-[1400px] h-full bg-white rounded-3xl shadow-md flex flex-col gap-6 p-6">
+        <button onclick="appendNumber('1')" class="btn">1</button>
+        <button onclick="appendNumber('2')" class="btn">2</button>
+        <button onclick="appendNumber('3')" class="btn">3</button>
+        <button onclick="setOperator('*')" class="btn bg-blue-200">*</button>
 
-    <!-- 상단 구역 -->
-    <div class="flex flex-wrap justify-between items-start gap-6 w-full">
-
-        <!-- 노랑 영역 (전체 인원 / 팀당 인원) -->
-        <div class="flex-1 min-w-[300px] bg-[#D3D594] rounded-2xl shadow-md p-4 flex flex-col items-center gap-4">
-            <!-- 상단 탭바 -->
-            <div class="w-full h-12 bg-white border-b-[5px] border-black rounded-t-2xl"></div>
-
-            <!-- 증가 버튼 -->
-            <div class="flex justify-center gap-4">
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-            </div>
-
-            <!-- 입력창 -->
-            <div class="flex items-center justify-center gap-6">
-                <input type="text" maxlength="3" value="100" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                       class="w-36 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white tracking-[0.5em]" />
-                <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                       class="w-16 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white" />
-            </div>
-
-            <!-- 감소 버튼 -->
-            <div class="flex justify-center gap-4">
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-            </div>
-        </div>
-
-        <!-- 분홍 영역 (날짜 입력) -->
-        <div class="flex-1 min-w-[300px] bg-[#FFC5D3] rounded-2xl shadow-md p-4 flex flex-col items-center gap-4">
-            <!-- 상단 탭바 -->
-            <div class="w-full h-12 bg-white border-b-[5px] border-black rounded-t-2xl"></div>
-
-            <!-- 증가 버튼 -->
-            <div class="flex justify-center gap-4">
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/uptriangle.png" alt="증가" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-            </div>
-
-            <!-- 입력창 -->
-            <div class="flex items-center gap-6">
-                <input type="text" maxlength="2" value="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                       class="w-24 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white tracking-[0.5em]" />
-                <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                       class="w-16 h-16 text-[40px] text-center border-[5px] border-black rounded-xl bg-white" />
-            </div>
-
-            <!-- 감소 버튼 -->
-            <div class="flex justify-center gap-4">
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-                <img src="../resource/downtriangle.png" alt="감소" class="w-10 h-10 hover:opacity-70 cursor-pointer" />
-            </div>
-        </div>
-
-        <!-- 노랑 버튼 다음으로 버튼 -->
-        <div class="w-[200px] h-[100px] bg-[#FDE295] rounded-2xl shadow-md text-center flex items-center justify-center text-xl font-bold">
-            ※다음으로※
-        </div>
-    </div>
-
-    <!-- 구분 버튼들 -->
-    <div class="flex gap-4 justify-end pr-4">
-        <div class="w-[120px] h-[50px] bg-[#EFCCF2] rounded-2xl shadow-md flex items-center justify-center">한글↔ENG</div>
-        <div class="w-[120px] h-[40px] bg-[#D9D9D9] rounded-2xl shadow-md flex items-center justify-center">제작자 코멘트</div>
-    </div>
-
-    <!-- 하단 시간 조절 패널 -->
-    <div class="w-full bg-[#BBDBF4] rounded-2xl shadow-inner flex flex-col items-center justify-center p-6 gap-4">
-        <!-- 상단 탭바 -->
-        <div class="w-full h-10 bg-white border-b-[5px] border-black rounded-t-2xl mb-4"></div>
-
-        <!-- 슬라이더바 -->
-        <div class="relative w-[80%]">
-            <div class="w-full h-4 bg-gray-300 border-[5px] border-black rounded-xl absolute top-1/2 -translate-y-1/2 z-0"></div>
-
-            <input type="range" min="0" max="48" value="0" id="minRange"
-                   class="w-full h-4 bg-transparent appearance-none absolute z-10
-          [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
-          [&::-webkit-slider-thumb]:bg-[url('../resource/downtriangle.png')]
-          [&::-webkit-slider-thumb]:bg-no-repeat
-          [&::-webkit-slider-thumb]:bg-center
-          [&::-webkit-slider-thumb]:bg-contain
-          [&::-webkit-slider-thumb]:cursor-pointer pointer-events-auto" />
-
-            <input type="range" min="0" max="48" value="48" id="maxRange"
-                   class="w-full h-4 bg-transparent appearance-none absolute z-10
-          [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
-          [&::-webkit-slider-thumb]:bg-red-500
-          [&::-webkit-slider-thumb]:bg-no-repeat
-          [&::-webkit-slider-thumb]:bg-center
-          [&::-webkit-slider-thumb]:bg-contain
-          [&::-webkit-slider-thumb]:cursor-pointer pointer-events-auto" />
-        </div>
+        <button onclick="appendNumber('0')" class="btn">0</button>
+        <button onclick="clearDisplay()" class="btn bg-red-200">C</button>
+        <button onclick="calculate()" class="btn bg-green-200">=</button>
+        <button onclick="setOperator('/')" class="btn bg-blue-200">/</button>
     </div>
 </div>
+
+<script>
+    let currentInput = '';
+    let operator = '';
+    let firstNumber = '';
+
+    function appendNumber(num) {
+        currentInput += num;
+        updateDisplay(currentInput);
+    }
+
+    function setOperator(op) {
+        if (currentInput === '') return;
+        firstNumber = currentInput;
+        operator = op;
+        currentInput = '';
+    }
+
+    function calculate() {
+        if (firstNumber === '' || currentInput === '') return;
+
+        const num1 = parseFloat(firstNumber);
+        const num2 = parseFloat(currentInput);
+        let result = 0;
+
+        switch (operator) {
+            case '+': result = num1 + num2; break;
+            case '-': result = num1 - num2; break;
+            case '*': result = num1 * num2; break;
+            case '/': result = num2 !== 0 ? num1 / num2 : 'Error'; break;
+        }
+
+        updateDisplay(result);
+        currentInput = '';
+        operator = '';
+        firstNumber = '';
+    }
+
+    function clearDisplay() {
+        currentInput = '';
+        operator = '';
+        firstNumber = '';
+        updateDisplay('');
+    }
+
+    function updateDisplay(value) {
+        document.getElementById('display').value = value;
+    }
+</script>
+
+<style>
+    .btn {
+        @apply py-2 text-lg font-semibold bg-gray-200 rounded-md hover:bg-gray-300 transition;
+    }
+</style>
 </body>
 </html>
