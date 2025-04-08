@@ -26,23 +26,29 @@
   <div class='relative w-full h-[20%] top-0 bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20'></div>
 
   <!-- 슬라이더 트랙 (회색 막대) -->
-  <div class="absolute w-[80%] h-[5%] bottom-[20%] bg-gray-300 border-black border-[5px] rounded-xl -translate-y-1/2"></div>
+  <div class="absolute w-[80%] h-[5%] bottom-[30%] bg-gray-300 border-black border-[5px] rounded-xl -translate-y-1/2">
+    <!-- 최소값 조절 슬라이더 -->
+    <!--1440 / 5의 배수로 해서 그만큼 N시 5의배수 분으로.-->
+    <input type="range" min="0" max="48" value="0" id="minRange"
+           class="absolute w-full h-[5%] bg-transparent appearance-none pointer-events-none
+    [&::-webkit-slider-runnable-track]:bg-gray-300
+    [&::-webkit-slider-runnable-track]:h-2
+    [&::-webkit-slider-runnable-track]:rounded-full
 
-  <!-- 최소값 조절 슬라이더 -->
-  <input type="range" min="0" max="48" value="0" id="minRange"
-         class=" absolute w-[80%] h-[5%] bottom-[20%] bg-transparent appearance-none pointer-events-none
-           [&::-webkit-slider-thumb]:appearance-none
-           [&::-webkit-slider-thumb]:pointer-events-auto
-           [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
-           [&::-webkit-slider-thumb]:bg-[url('./resource/downtriangle.png')]
-           [&::-webkit-slider-thumb]:bg-no-repeat
-           [&::-webkit-slider-thumb]:bg-center
-           [&::-webkit-slider-thumb]:bg-contain
-           [&::-webkit-slider-thumb]:cursor-pointer">
+    [&::-webkit-slider-thumb]:appearance-none
+    [&::-webkit-slider-thumb]:pointer-events-auto
+    [&::-webkit-slider-thumb]:w-8
+    [&::-webkit-slider-thumb]:h-8
+    [&::-webkit-slider-thumb]:bg-[url('./resource/downtriangle.png')]
+    [&::-webkit-slider-thumb]:bg-no-repeat
+    [&::-webkit-slider-thumb]:bg-center
+    [&::-webkit-slider-thumb]:bg-contain
+    [&::-webkit-slider-thumb]:cursor-pointer
+  " />
 
-  <!-- 최대값 조절 슬라이더 -->
-  <input type="range" min="0" max="48" value="48" id="maxRange"
-         class=" absolute w-[80%] h-[5%] bottom-[20%] bg-transparent appearance-none pointer-events-none
+    <!-- 최대값 조절 슬라이더 -->
+    <input type="range" min="0" max="48" value="48" id="maxRange"
+           class=" absolute w-[100%] h-[5%]  bg-transparent appearance-none pointer-events-none
            [&::-webkit-slider-thumb]:appearance-none
            [&::-webkit-slider-thumb]:pointer-events-auto
            [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8
@@ -51,6 +57,18 @@
            [&::-webkit-slider-thumb]:bg-center
            [&::-webkit-slider-thumb]:bg-contain
            [&::-webkit-slider-thumb]:cursor-pointer">
+  </div>
+  <div class="absolute w-[40%] bottom-[10%] flex justify-center">
+    <button class="relative w-[20%] h-[50%] right-[10%] bg-[#FDE295] border-black border-[5px] text-[20px] rounded-xl">
+    -5</button>
+
+    <input type="text" maxlength="2" value="15" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+           class="relative w-[20%] h-[50%] bg-[#FFF] border-black border-[5px] rounded-xl z-20 text-[20px] text-center tracking-[1em] ">
+
+    <button class="relative w-[20%] h-[50%] left-[10%] bg-[#FDE295] border-black border-[5px] text-[20px] rounded-xl">
+    +5</button>
+  </div>
+
 </div>
 
 <!-- 🟩 인원 조작 패널 (좌측 파란 영역) -->
@@ -142,9 +160,9 @@
 </div>
 
 <!-- 🟨 다음 단계로 이동 버튼 -->
-<div class='absolute w-[20%] h-[12%] right-[17%] top-[10%] bg-[#FDE295] border-shadow-round mt-12 z-20 flex justify-center items-center text-[50px]'>
+<a href="/Time_Table/page2.html" class='absolute w-[20%] h-[12%] right-[17%] top-[10%] bg-[#FDE295] border-shadow-round  hover:border-[6px] mt-12 z-20 flex justify-center items-center text-[50px]'>
   ※다음으로※
-</div>
+</a>
 
 <!-- 🟧 언어 전환 버튼 / 회색 코멘트 박스 -->
 <div class='absolute w-[10%] h-[7%] right-[38%] top-[10%] bg-[#EFCCF2] border-shadow-round mt-12 z-20 flex justify-center items-center'>

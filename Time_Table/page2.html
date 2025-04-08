@@ -4,41 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>타임테이블 페이지 2</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS 라이브러리 -->
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
-<body class="body">
-<div class="main-box">
-    <span class="or-text">or</span>
+
+
+<!-- 배경 -->
+<body class="
+    bg-[#FFFEE3]
+    flex justify-center items-center h-screen
+">
+
+
+<!-- 전체 컨테이너 (하얀색 박스) -->
+<div class="
+        absolute
+        w-[75%] h-[75vh]
+        bg-white rounded-2xl
+        shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center items-center
+        text-5xl font-bold
+    ">
 </div>
 
-<div class="blue-box">
-    드래그 & 드롭, 클릭으로<br>파일 (.xlsx, etc) 첨부하기
+
+<!-- 분홍색 박스 -->
+<div class="
+        absolute
+        w-[24%] h-[50vh]
+        right-[54%]
+        bg-[#FFC5D3] rounded-2xl
+        shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center
+        text-2xl font-bold
+    ">
+    드래그 & 드롭, 클릭으로
+    <br> 파일 (.xlsx, etc) 첨부하기
 </div>
 
-<div class="file-upload">
+<div class="absolute w-[24%] left-[26%] top-[30%] z-10">
     <input
-            type="file"
-            accept=".xlsx"
-            class="file-input"
+            type = "file"
+            accept = ".xlsx"
+            class = "
+        w-full
+        h-[100px]
+        p-2 rounded-lg
+        border-2 border-black
+        focus:outline-none
+        focus:ring-2
+        focus:ring-blue-400
+        text-xl"
     />
 </div>
 
-<button class="button yellow-button">
+
+
+<!-- 노란색 박스 -->
+<button class="
+        absolute
+        w-[18%] h-[12vh]
+        right-[28%] top-[30%]
+        bg-[#FDE295] rounded-2xl
+        drop-shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center items-center
+        text-5xl font-bold
+        hover:bg-yellow-400 transition-all
+    ">
     ※생성하기※
 </button>
 
-<div class="green-box"></div>
 
-<button class="button pink-button">
-    한글 -> ENG
-</button>
+<!-- 연한 회색 박스 -->
+<div class="
+        absolute
+        w-[18%] h-[18vh]
+        right-[28%] top-[44%]
+        bg-[#EDEDED] rounded-2xl
+        drop-shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-green-400 transition-all
+    ">
+</div>
 
-<button class="button gray-button">
+
+<!-- 회색 박스 -->
+<button class="
+        absolute
+        w-[9%] h-[5vh]
+        right-[37%] top-[64%]
+        bg-[#D9D9D9] rounded-2xl
+        drop-shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-black-400 transition-all
+    ">
     개발자 코멘트
 </button>
 
-<button class="button purple-button">
+
+<!-- 하늘색 박스 -->
+<button class="
+        absolute
+        w-[8%] h-[5vh]
+        right-[28%] top-[64%]
+        bg-[#BBDBF4] rounded-2xl
+        drop-shadow-[4px_4px_0px_black]
+        border-4 border-black
+        flex justify-center items-center
+        text-xl font-bold
+        hover:bg-black-400 transition-all
+    ">
     이전으로
 </button>
+
 </body>
 </html>
