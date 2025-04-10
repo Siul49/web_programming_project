@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="bg-[#FEE9CE] h-screen flex justify-center items-center">
+<body class="bg-[#FEE9CE] w-screen h-screen flex justify-center items-center">
   <!-- 12시 까지? -->
   <!-- 상단 페이지 버튼 -->
   <button onclick="location.reload();" class="absolute w-[10%] h-[10%] left-[20%] top-[5%] bg-[#FDE295] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] ">※타임테이블 페이지</button>
-  <button class="absolute w-[10%] h-[10%] left-[30%] top-[7%] bg-[#EFCCF2] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] ">※맛집 찾기</button>
+  <button class="absolute w-[10%] h-[10%] left-[30%] top-[8%] bg-[#EFCCF2] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] ">※맛집 찾기</button>
 
   <!-- ⚪ 메인 컨테이너 (전체 배경 흰색 틀) -->
   <div class='relative w-[65%] h-[75%] bg-white border-shadow-round flex justify-center items-center'>
@@ -52,7 +52,7 @@
       [&::-webkit-slider-thumb]:bg-center
       [&::-webkit-slider-thumb]:bg-contain
       [&::-webkit-slider-thumb]:cursor-pointer
-    " />
+      " />
 
         <!-- 최대값 조절 슬라이더 -->
         <input type="range" min="0" max="48" value="48" id="maxRange"
@@ -88,69 +88,70 @@
       </div>
 
       <!-- 위쪽 삼각 버튼들 (인원 수 증가) -->
-      <div class="relative top-[10%]">
-        <button class="relative left-[15%] hover:opacity-70">
+      <div class="relative w-full h-[10%] top-[10%]">
+        <button class="absolute left-[13%] hover:opacity-70">
           <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
-        <button class="relative left-[25%] hover:opacity-70">
+        <button class="absolute left-[32%] hover:opacity-70">
           <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
-        <button class="relative left-[35%] hover:opacity-70">
+        <button class="absolute left-[50%] hover:opacity-70">
           <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
-        <button class="relative left-[55%] hover:opacity-70">
+        <button class="absolute left-[78%] hover:opacity-70">
           <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
       </div>
 
       <!-- 인원 수 입력창 (총 인원 / 팀당 인원) -->
-      <div class="relative top-[15%]">
+      <div class="relative w-full h-[30%] top-[15%]">
         <input type="text" maxlength="3" value="100" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="relative w-[48%] h-[10%] left-[11%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center tracking-[1.5em] ">
+               class="absolute w-[50%] h-[100%] left-[11%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center tracking-[1.5em] ">
         <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="relative w-[12%] h-[10%] left-[22%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center">
+               class="absolute w-[12%] h-[100%] left-[76%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center">
       </div>
 
       <!-- 아래쪽 삼각 버튼들 (인원 수 감소) -->
-      <div class="relative top-[20%]">
-        <button class="relative left-[15%] hover:opacity-70">
+      <div class="relative w-full h-[10%] top-[20%]">
+        <button class="absolute left-[13%] hover:opacity-70">
           <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
-        <button class="relative left-[25%] hover:opacity-70">
+        <button class="absolute left-[32%] hover:opacity-70">
           <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
-        <button class="relative left-[35%] hover:opacity-70">
+        <button class="absolute left-[50%] hover:opacity-70">
           <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
-        <button class="relative left-[55%] hover:opacity-70">
+        <button class="absolute left-[78%] hover:opacity-70">
           <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
       </div>
     </div>
 
     <!-- 🟪 날짜/요일 조작 패널 (우측 보라 영역) -->
-    <div class='absolute w-[43%] h-[35%] right-[5%] top-[20%] bg-[#FFC5D3] border-shadow-round mt-12 z-20'>
+    <div class='absolute w-[43%] h-[40%] right-[5%] bottom-[30%] bg-[#FFC5D3] border-shadow-round mt-12 z-20'>
 
       <!-- 상단 탭바 -->
-      <div class='relative w-full h-[20%] bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20 flex items-center text-[20px]'>
+      <div class='absolute w-full h-[20%] bg-[#FFF] border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20 flex items-center text-[20px]'>
         시작일, 기간 입력
       </div>
 
       <!-- 위쪽 삼각 버튼들 (날짜 증가) -->
-      <div class="relative top-[10%]">
-        <button class="relative left-[20%] hover:opacity-70">
-          <img src="/resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+      <div class="relative w-full h-[10%] top-[30%]">
+        <button class="absolute left-[17%] hover:opacity-70">
+          <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
-        <button class="relative left-[30%] hover:opacity-70">
-          <img src="/resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+        <button class="absolute left-[38%] hover:opacity-70">
+          <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
-        <button class="relative left-[60%] hover:opacity-70">
-          <img src="/resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+
+        <button class="absolute left-[75%] hover:opacity-70">
+          <img src="../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
         </button>
       </div>
 
       <!-- 날짜 입력창 (날짜 / 요일) -->
-      <div class="relative top-[15%]">
+      <div class="relative w-full h-[50%] top-[35%]">
         <input type="text" maxlength="2" value="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                class="relative w-[32%] h-[10%] left-[16%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center tracking-[1.5em]">
         <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
@@ -158,15 +159,16 @@
       </div>
 
       <!-- 아래쪽 삼각 버튼들 (날짜 감소) -->
-      <div class="relative top-[20%]">
-        <button class="relative left-[20%] hover:opacity-70">
-          <img src="/resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+      <div class="relative w-full h-[10%] top-[40%]">
+        <button class="absolute left-[17%] hover:opacity-70">
+          <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
-        <button class="relative left-[30%] hover:opacity-70">
-          <img src="/resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+        <button class="absolute left-[38%] hover:opacity-70">
+          <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
-        <button class="relative left-[60%] hover:opacity-70">
-          <img src="/resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+
+        <button class="absolute left-[75%] hover:opacity-70">
+          <img src="/resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
         </button>
       </div>
     </div>
