@@ -10,20 +10,26 @@
 
 </head>
 
+<!-- 배경 -->
+<body class="
+    bg-[#FEE9CE]
+    w-screen h-screen flex justify-center items-center
+">
+
+
 <!-- 상단 페이지 버튼 -->
 <button
         onclick="location.reload();"
         class="
         absolute
         w-[10%] h-[10%]
-        left-[15%] top-[5%]
+        left-[20%] top-[5%]
         bg-[#FDE295] text-black
         flex justify-center
         py-2
-        border-black border-[5px]
-        rounded-2xl
-    "
->
+        border-black rounded-2xl
+        border-[5px]
+    ">
     ※타임테이블 페이지
 </button>
 
@@ -31,135 +37,123 @@
         class="
         absolute
         w-[10%] h-[10%]
-        left-[25.5%] top-[7%]
-        bg-[#AAAAAA] text-black
+        left-[30%] top-[8%]
+        bg-[#EFCCF2] text-black
         flex justify-center
         py-2
-        border-black border-[5px]
-        rounded-2xl
-    "
->
+        border-black rounded-2xl
+        border-[5px]
+    ">
     ※맛집 찾기
 </button>
 
 
-<!-- 배경 -->
-<body class="
-    bg-[#FFFEE3]
-    flex justify-center items-center h-screen
-">
-
-
 <!-- 전체 컨테이너 (하얀색 박스) -->
 <div class="
-        absolute
-        w-[75%] h-[75vh]
-        bg-white rounded-2xl
-        shadow-[4px_4px_0px_black]
-        border-4 border-black
+        relative
+        w-[65%] h-[75%]
+        bg-white border-shadow-round
         flex justify-center items-center
-        text-5xl
-    ">
-</div>
+        ">
 
+    <!-- 분홍색 박스 -->
+    <div class="
+            absolute
+            w-[36%] h-[50vh]
+            right-[52%]
+            bg-[#FFC5D3] rounded-3xl
+            shadow-[4px_4px_0px_black]
+            border-4 border-black
+            flex justify-center items-center px-4
+            text-2xl text-center
+            hover:bg-pink-300 transition-all
+        ">
+        <div class="h-[38%]">
+            드래그 & 드롭, 클릭으로
+            <br> 파일 (.xlsx, etc) 첨부하기
+        </div>
 
-<!-- 분홍색 박스 -->
-<div class="
-        absolute
-        w-[24%] h-[50vh]
-        right-[52%]
-        bg-[#FFC5D3] rounded-3xl
-        shadow-[4px_4px_0px_black]
-        border-4 border-black
-        flex justify-center items-center px-4
-        text-2xl
-        hover:bg-pink-300 transition-all
-    ">
-    <div class="translate-y-[-100%]">
-        드래그 & 드롭, 클릭으로
-        <br> 파일 (.xlsx, etc) 첨부하기
+        <!-- 파일 입력창 -->
+        <div class="absolute w-[80%] top-[56%] z-10">
+            <input
+                    type = "file"
+                    accept = ".xlsx"
+                    class = "
+                    w-full
+                    h-[50px]
+                    p-2 rounded-lg
+                    border-2 border-black
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-blue-400
+                    text-xl
+                    items-center px-6"
+            />
+        </div> <!-- end of 파일 입력창 -->
+
+    </div> <!-- end of 분홍색 박스 -->
+
+    <!-- 노란색 박스 -->
+    <button class="
+            absolute
+            w-[32%] h-[12vh]
+            right-[10%] top-[22%]
+            bg-[#FDE295] rounded-3xl
+            drop-shadow-[4px_4px_0px_black]
+            border-4 border-black
+            flex justify-center items-center
+            text-3xl
+            hover:bg-yellow-300 transition-all
+        ">
+        ※생성하기※
+    </button> <!-- end of 노란색 박스 -->
+
+    <!-- 연한 회색 박스 -->
+    <div class="
+            absolute
+            w-[32%] h-[18vh]
+            right-[10%] top-[42%]
+            bg-[#EDEDED] rounded-3xl
+            shadow-[4px_4px_0px_black]
+            border-4 border-black
+            flex justify-center items-center
+            text-2xl
+            hover:bg-gray-200 transition-all
+        ">
+        설명
     </div>
-</div>
 
-<div class="absolute w-[18%] left-[27%] top-[53%] z-10">
-    <input
-            type = "file"
-            accept = ".xlsx"
-            class = "
-        w-full
-        h-[50px]
-        p-2 rounded-lg
-        border-2 border-black
-        focus:outline-none
-        focus:ring-2
-        focus:ring-blue-400
-        text-xl"
-    />
-</div>
+    <!-- 회색 박스 -->
+    <button class="
+            absolute
+            w-[16%] h-[5vh]
+            right-[26%] top-[70%]
+            bg-[#D9D9D9] rounded-3xl
+            drop-shadow-[4px_4px_0px_black]
+            border-4 border-black
+            flex justify-center items-center
+            text-xl
+            hover:bg-gray-300 transition-all
+        ">
+        개발자 코멘트
+    </button>
 
+    <!-- 하늘색 박스 -->
+    <button class="
+            absolute
+            w-[14%] h-[5vh]
+            right-[10%] top-[70%]
+            bg-[#BBDBF4] rounded-3xl
+            drop-shadow-[4px_4px_0px_black]
+            border-4 border-black
+            flex justify-center items-center
+            text-xl
+            hover:bg-blue-300 transition-all
+        ">
+        이전으로
+    </button>
 
-<!-- 노란색 박스 -->
-<button class="
-        absolute
-        w-[18%] h-[12vh]
-        right-[26%] top-[30%]
-        bg-[#FDE295] rounded-3xl
-        drop-shadow-[4px_4px_0px_black]
-        border-4 border-black
-        flex justify-center items-center
-        text-3xl
-        hover:bg-yellow-300 transition-all
-    ">
-    ※생성하기※
-</button>
-
-
-<!-- 연한 회색 박스 -->
-<div class="
-        absolute
-        w-[18%] h-[18vh]
-        right-[26%] top-[44%]
-        bg-[#EDEDED] rounded-3xl
-        shadow-[4px_4px_0px_black]
-        border-4 border-black
-        flex justify-center items-center
-        text-2xl
-        hover:bg-gray-200 transition-all
-    ">
-    설명
-</div>
-
-
-<!-- 회색 박스 -->
-<button class="
-        absolute
-        w-[9%] h-[5vh]
-        right-[35%] top-[64%]
-        bg-[#D9D9D9] rounded-3xl
-        drop-shadow-[4px_4px_0px_black]
-        border-4 border-black
-        flex justify-center items-center
-        text-xl
-        hover:bg-gray-300 transition-all
-    ">
-    개발자 코멘트
-</button>
-
-
-<!-- 하늘색 박스 -->
-<button class="
-        absolute
-        w-[8%] h-[5vh]
-        right-[26%] top-[64%]
-        bg-[#BBDBF4] rounded-3xl
-        drop-shadow-[4px_4px_0px_black]
-        border-4 border-black
-        flex justify-center items-center
-        text-xl
-        hover:bg-blue-300 transition-all
-    ">
-    이전으로
-</button>
+</div> <!-- end of 전체 컨테이너 -->
 
 </body>
 </html>
