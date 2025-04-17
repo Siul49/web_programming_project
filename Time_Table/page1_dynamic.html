@@ -60,48 +60,39 @@
   <div class='absolute w-[86%] h-[45%] top-[50%] left-[5%] bg-[#BBDBF4] border-[5px] shadow-md border-black rounded-2xl flex justify-center'>
 
     <!-- 상단 탭바 (하단 박스 위에 흰색 헤더) -->
-    <div class='absolute w-[100%] h-[20%] top-0 p-2 bg-[#FFF] border-black  border-b-[5px] rounded-tl-xl rounded-tr-xl  flex items-center text-[20px]'>
+    <div class='relative w-[100%] h-[20%] top-0 p-2 bg-[#FFF] border-black  border-b-[5px] rounded-tl-xl rounded-tr-xl  flex items-center text-[20px]'>
       시작 시간 | 종료 시간 | 팀 당 배정될 시간
     </div>
-    <div class ="absolute w-[100%] h-[25%] bottom-[50%] flex justify-center">
-
+    <!-- 슬라이더 트랙 -->
+    <div id="sliderTrack" class="absolute w-[85%] h-[20%] bottom-[30%] bg-[#FEE9CE] border-black border-[5px] rounded-2xl -translate-y-1/2">
+      <!-- 선택 범위 바 -->
+      <div id="sliderRange" class="absolute h-full bg-blue-300 opacity-60 rounded-xl z-10"></div>
+      <!-- 최소 커서 -->
+      <div id="sliderThumbMin" class="absolute w-[10%] h-full bg-white border-black border-[4px] rounded-xl flex items-center justify-center text-lg font-bold shadow z-20 cursor-pointer select-none -translate-y-1/2 bottom-[25%]">
+        <span id="sliderMinLabel">00:00</span>
+      </div>
+      <!-- 최대 커서 -->
+      <div id="sliderThumbMax" class="absolute w-[10%] h-full bg-white border-black border-[4px] rounded-xl flex items-center justify-center text-lg font-bold shadow z-20 cursor-pointer select-none -translate-y-1/2 top-[100%]">
+        <span id="sliderMaxLabel">24:00</span>
+      </div>
     </div>
 
-    <!-- 슬라이더 트랙 (회색 막대) -->
-    <div class="absolute w-[80%] h-[20%] bottom-[30%] bg-[#FEE9CE] border-black border-[5px] rounded-xl -translate-y-1/2">
-      <div class="absolute w-[0.5%] right-[5%]  h-full bg-black opacity-20"></div>
-      <div class="absolute w-[0.5%] right-[15%] h-full bg-black opacity-30"></div>
-      <div class="absolute w-[0.5%] right-[25%] h-full bg-black opacity-40"></div>
-      <div class="absolute w-[0.5%] right-[35%] h-full bg-black opacity-50"></div>
-      <div class="absolute w-[0.5%] right-[45%] h-full bg-black opacity-60"></div>
-      <div class="absolute w-[0.5%] right-[55%] h-full bg-black opacity-60"></div>
-      <div class="absolute w-[0.5%] right-[65%] h-full bg-black opacity-50"></div>
-      <div class="absolute w-[0.5%] right-[75%] h-full bg-black opacity-40"></div>
-      <div class="absolute w-[0.5%] right-[85%] h-full bg-black opacity-30"></div>
-      <div class="absolute w-[0.5%] right-[95%] h-full bg-black opacity-20"></div>
-
-
-      <div class="absolute w-[12%] h-[100%] left-[10%] bg-[#FFF] border-black border-[5px] text-[30px] rounded-xl text-center">
-        02:00</div>
-
-      <div class="absolute w-[12%] h-[100%] right-[10%] bg-[#FFF] border-black border-[5px] text-[30px] rounded-xl text-center">
-        23:30</div>
-    </div>
 
     <div class="absolute w-[40%] h-[20%] bottom-[10%] flex justify-center">
-      <button class="relative w-[20%] h-[100%] right-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
-        ◀</button>
-
-      <input type="text" maxlength="2" value="15" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+      <button id="stepDecBtn" class="relative w-[20%] h-[100%] right-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
+        ◀
+      </button>
+      <input id="stepInput" type="text" maxlength="2" value="15"
+             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
              class="relative w-[20%] h-[100%] bg-[#FFF] border-black border-[5px] rounded-xl z-20 text-[30px] text-center ">
-
-      <button class="relative w-[20%] h-[100%] left-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
-        ▶</button>
+      <button id="stepIncBtn" class="relative w-[20%] h-[100%] left-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
+        ▶
+      </button>
     </div>
 
   </div>
 
-  <!-- 🟩 인원 조작 패널 (좌측 파란 영역) -->
+  <!-- 🟩 인원 조작 패널 (좌측 상단 영역) -->
   <div class='absolute w-[45%] h-[40%] right-[50%] bottom-[55%] bg-[#D3D594] border-[5px] shadow-md border-black rounded-2xl mt-12 z-20'>
 
     <!-- 상단 탭바 -->
@@ -154,7 +145,7 @@
     </div>
   </div>
 
-  <!-- 🟪 날짜/요일 조작 패널 (우측 보라 영역) -->
+  <!-- 🟪 날짜/요일 조작 패널 (우측 상단 영역) -->
   <div class='absolute w-[43%] h-[35%] right-[5%] bottom-[38%] bg-[#FFC5D3] border-[5px] shadow-md border-black rounded-2xl mt-12 z-20'>
 
     <!-- 상단 탭바 -->
@@ -245,6 +236,8 @@
       digits[index] = (digits[index] - 1 + 10) % 10;
       bounceAnimation(digitsDownButtons[index]);
       updateDigitsUI();
+
+      saveStateToUrl();
     });
   });
 
@@ -254,6 +247,8 @@
       digits[index] = (digits[index] + 1 + 10) % 10;
       bounceAnimation(digitsUpButtons[index]);
       updateDigitsUI();
+
+      saveStateToUrl();
     });
   });
 
@@ -261,38 +256,211 @@
 
 </script>
 
-<script> // 슬라이더
-  const minSlider = document.getElementById("minSlider");
-  const maxSlider = document.getElementById("maxSlider");
-  const minLabel = document.getElementById("minLabel");
-  const maxLabel = document.getElementById("maxLabel");
-  const rangeText = document.getElementById("rangeText");
+<script>//url 저장
 
-  function updateUI() {
-    let min = parseInt(minSlider.value);
-    let max = parseInt(maxSlider.value);
+//url에서 값 불러오기
+window.addEventListener('DOMContentLoaded', loadStatesFromURL);
 
-    // swap if overlap
-    if (min > max) {
-      [min, max] = [max, min];
+
+function saveStateToUrl() {
+  const digitsStr = digits.join(',');
+  const params = new URLSearchParams(window.location.search);
+
+  params.set('digits', digitsStr);
+  params.set('sliderMin', currentMin);
+  params.set('sliderMax', currentMax);
+  const newURL = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, '', newURL);
+}
+
+
+
+function loadStatesFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const digitsStr = params.get('digits');
+  const minParam = parseInt(params.get('sliderMin'), 10);
+  const maxParam = parseInt(params.get('sliderMax'), 10);
+  if (digitsStr) {
+    const arr = digitsStr.split(',').map(x => parseInt(x, 10));
+    if (arr.length === digits.length && arr.every(x => !isNaN(x))) {
+      arr.forEach((v, i) => digits[i] = v);
+      updateDigitsUI();
     }
-
-    // 백분율 위치 계산
-    const percentMin = (min / 24) * 100;
-    const percentMax = (max / 24) * 100;
-
-    minLabel.textContent = min;
-    maxLabel.textContent = max;
-
-    minLabel.style.left = `calc(${percentMin}% - 20px)`;
-    maxLabel.style.left = `calc(${percentMax}% - 20px)`;
-
-    rangeText.textContent = `${min}시 ~ ${max}시`;
   }
+  if (!isNaN(minParam)) currentMin = minParam;
+  if (!isNaN(maxParam)) currentMax = maxParam;
+}
 
-  minSlider.addEventListener("input", updateUI);
-  maxSlider.addEventListener("input", updateUI);
-  updateUI(); // 초기 실행
+
+</script>
+
+<script> // 슬라이더
+         // 슬라이더 설정
+const minTime = 0;    // 00:00 (분 단위)
+const maxTime = 24 * 60; // 24:00 (분 단위)
+function pxToValue(px) {
+  let v = Math.round((px / trackWidth) * (maxTime - minTime) / step) * step + minTime;
+  v = Math.max(minTime, Math.min(v, maxTime));
+  return v;
+}           // 30분 단위
+const track = document.getElementById("sliderTrack");
+const sliderRange = document.getElementById("sliderRange");
+const thumbMin = document.getElementById("sliderThumbMin");
+const thumbMax = document.getElementById("sliderThumbMax");
+const labelMin = document.getElementById("sliderMinLabel");
+const labelMax = document.getElementById("sliderMaxLabel");
+
+let currentMin = minTime;
+let currentMax = maxTime;
+
+let trackWidth = 0;
+
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  trackWidth = track.offsetWidth;
+  loadStatesFromURL(); // URL에서 currentMin, currentMax를 불러옴
+  updateSliderUI();    // trackWidth, currentMin, currentMax 모두 준비된 뒤 커서 위치 갱신
+
+});
+
+function timeToStr(mins) {
+  const h = String(Math.floor(mins / 60)).padStart(2, "0");
+  const m = String(mins % 60).padStart(2, "0");
+  return `${h}:${m}`;
+}
+
+function valueToPx(val) {
+  return ((val - minTime) / (maxTime - minTime)) * trackWidth;
+}
+
+function pxToValue(px) {
+  let v = Math.round((px / trackWidth) * (maxTime - minTime) / step) * step + minTime;
+  v = Math.max(minTime, Math.min(v, maxTime));
+  return v;
+}
+
+function updateSliderUI() {
+  const minPx = valueToPx(currentMin);
+  const maxPx = valueToPx(currentMax);
+
+  // 커서 width(px) 구하기 (Tailwind로 w-[10%] 등 사용 시 실제 px로 변환)
+  const thumbWidth = thumbMin.offsetWidth; // 또는 thumbMax.offsetWidth
+
+  // 커서의 중심이 트랙 끝에 오도록 보정
+  thumbMin.style.left = `${minPx - thumbWidth / 2}px`;
+  thumbMax.style.left = `${maxPx - thumbWidth / 2}px`;
+
+  sliderRange.style.left = `${minPx}px`;
+  sliderRange.style.width = `${maxPx - minPx - 9}px`;
+
+  labelMin.textContent = timeToStr(currentMin);
+  labelMax.textContent = timeToStr(currentMax);
+
+
+}
+
+
+let dragging = null;
+
+function onDrag(e, type) {
+  dragging = type;
+  document.body.style.userSelect = "none";
+
+}
+
+function onMove(e) {
+  if (!dragging) return;
+  const rect = track.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  let val = pxToValue(x);
+
+  if (dragging === "min") {
+    currentMin = Math.min(val, currentMax - step);
+  } else if (dragging === "max") {
+    currentMax = Math.max(val, currentMin + step);
+  }
+  updateSliderUI();
+  saveStateToUrl();
+}
+
+function onUp() {
+  dragging = null;
+  document.body.style.userSelect = "";
+}
+
+thumbMin.addEventListener("mousedown", e => onDrag(e, "min"));
+thumbMax.addEventListener("mousedown", e => onDrag(e, "max"));
+thumbMin.addEventListener("touchstart", e => onDrag(e, "min"));
+thumbMax.addEventListener("touchstart", e => onDrag(e, "max"));
+
+document.addEventListener("mousemove", onMove);
+document.addEventListener("touchmove", onMove);
+document.addEventListener("mouseup", onUp);
+document.addEventListener("touchend", onUp);
+
+window.addEventListener("resize", () => {
+  // trackWidth가 변할 수 있으니 다시 계산
+  updateSliderUI();
+});
+
+updateSliderUI();
+
+<!--슬라이더 커서 간격 조절 버튼-->
+// 1. DOM 요소 참조
+const stepInput = document.getElementById('stepInput');
+const stepDecBtn = document.getElementById('stepDecBtn');
+const stepIncBtn = document.getElementById('stepIncBtn');
+
+// 2. step 값 제한 범위
+const STEP_MIN = 5;
+const STEP_MAX = 60;
+
+// 3. 입력창 값으로 step 동기화 함수
+function getStepValue() {
+  let val = parseInt(stepInput.value, 10);
+  if (isNaN(val) || val < STEP_MIN) val = STEP_MIN;
+  if (val > STEP_MAX) val = STEP_MAX;
+  stepInput.value = val;
+  return val;
+}
+
+// 4. 버튼 이벤트
+stepDecBtn.addEventListener('click', () => {
+  let val = getStepValue();
+  val = Math.max(STEP_MIN, val - 5);
+  stepInput.value = val;
+  updateStep(val);
+});
+
+stepIncBtn.addEventListener('click', () => {
+  let val = getStepValue();
+  val = Math.min(STEP_MAX, val + 5);
+  stepInput.value = val;
+  updateStep(val);
+});
+
+// 5. 입력 직접 수정 시에도 반영
+stepInput.addEventListener('change', () => {
+  let val = getStepValue();
+  updateStep(val);
+});
+
+// 6. 슬라이더에 step 적용 (슬라이더 코드와 연동 필요)
+let step = getStepValue();
+
+function updateStep(newStep) {
+  step = newStep;
+  // 슬라이더에서 step 변수를 사용하는 부분이 있다면 아래처럼 적용
+  // 예: pxToValue, valueToPx 등에서 step 사용
+  // 예시: pxToValue(px) { ... / step) * step ... }
+  // updateSliderUI() 등 호출
+}
+
+
+
+
+
 </script>
 </body>
 </html>
