@@ -8,37 +8,7 @@
   <!-- Tailwind CSS로 빌드된 style.css 불러오기 -->
   <link rel="stylesheet" href="css/style.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    input[type=range]::-webkit-slider-thumb {
-      appearance: none;
-      height: 30px;
-      width: 30px;
-      background: white;
-      border: 3px solid black;
-      border-radius: 8px;
-      cursor: pointer;
-      pointer-events: auto;
-    }
 
-    input[type=range] {
-      appearance: none;
-      height: 50px;
-      background: transparent;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      pointer-events: none;
-    }
-
-    .slider-container {
-      position: relative;
-      width: 600px;
-      height: 50px;
-      background-color: #d1d5db;
-      border: 4px solid black;
-      border-radius: 12px;
-    }
-  </style>
 </head>
 
 <body class="bg-[#FEE9CE] w-screen h-screen flex justify-center items-center">
@@ -79,13 +49,11 @@
 
 
     <div class="absolute w-[40%] h-[20%] bottom-[10%] flex justify-center">
-      <button id="stepDecBtn" class="relative w-[20%] h-[100%] right-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
+      <button id="intervalDecBtn" class="relative w-[20%] h-[100%] right-[10%] bg-[#FDE295] items-center justify-center border-black border-[5px] text-[30px] rounded-xl">
         ◀
       </button>
-      <input id="stepInput" type="text" maxlength="2" value="15"
-             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-             class="relative w-[20%] h-[100%] bg-[#FFF] border-black border-[5px] rounded-xl z-20 text-[30px] text-center ">
-      <button id="stepIncBtn" class="relative w-[20%] h-[100%] left-[10%] bg-[#FDE295] border-black border-[5px] text-[30px] rounded-xl">
+      <span id="intervalNum" class="relative w-[20%] h-[100%] bg-[#FFF] border-black border-[5px] rounded-xl z-20 text-[30px] text-center">5</span>
+      <button id="intervalIncBtn" class="relative w-[20%] h-[100%] left-[10%] bg-[#FDE295] items-center justify-center border-black border-[5px] text-[30px] rounded-xl">
         ▶
       </button>
     </div>
@@ -199,268 +167,13 @@
   <div class='absolute w-[12%] h-[10%] right-[36%] top-0 bg-[#EFCCF2] border-[5px] shadow-md border-black rounded-2xl mt-12 z-20 flex justify-center items-center'>
     제작자 소개
   </div>
-  <a href="page1_comment.html" class='absolute w-[12%] h-[7%] right-[36%] top-[11%] bg-[#D9D9D9] border-[5px] shadow-md rounded-2xl border-black mt-12 z-20 flex justify-center items-center'>
-    제작자 코멘트
-  </a>
+    <a href="page1_comment.html" class='absolute w-[12%] h-[7%] right-[36%] top-[11%] bg-[#D9D9D9] border-[5px] shadow-md rounded-2xl border-black mt-12 z-20 flex justify-center items-center'>
+      제작자 코멘트
+    </a>
+  </div>
 
-</div>
-<script> // 버튼
-  function bounceAnimation(el) {
-    el.classList.add("scale-125"); // 커짐
-    setTimeout(() => {
-      el.classList.remove("scale-125"); // 원래대로
-    }, 150);
-  }
-
-  const digits = [0, 0, 0, 0, 0, 0, 0]; // 초기값
-  const digitsUpButtons = document.querySelectorAll('.digitUp');
-  const digitsDownButtons = document.querySelectorAll('.digitDown');
-  const digitSpans = [
-    document.getElementById("digit0"),
-    document.getElementById("digit1"),
-    document.getElementById("digit2"),
-    document.getElementById("digit3"),
-    document.getElementById("digit4"),
-    document.getElementById("digit5"),
-    document.getElementById("digit6")
-  ];
-
-  function updateDigitsUI() {
-    digits.forEach((d, i) => digitSpans[i].textContent = d);
-  }
-
-  // 버튼과 연결
-  const downButtons = document.querySelectorAll(".digit-down-btn");
-  downButtons.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      digits[index] = (digits[index] - 1 + 10) % 10;
-      bounceAnimation(digitsDownButtons[index]);
-      updateDigitsUI();
-
-      saveStateToUrl();
-    });
-  });
-
-  const upButtons = document.querySelectorAll(".digit-up-btn");
-  upButtons.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      digits[index] = (digits[index] + 1 + 10) % 10;
-      bounceAnimation(digitsUpButtons[index]);
-      updateDigitsUI();
-
-      saveStateToUrl();
-    });
-  });
-
-  updateDigitsUI(); // 초기화
-
-</script>
-
-<script>//url 저장
-
-//url에서 값 불러오기
-window.addEventListener('DOMContentLoaded', loadStatesFromURL);
-
-
-function saveStateToUrl() {
-  const digitsStr = digits.join(',');
-  const params = new URLSearchParams(window.location.search);
-
-  params.set('digits', digitsStr);
-  params.set('sliderMin', currentMin);
-  params.set('sliderMax', currentMax);
-  const newURL = `${window.location.pathname}?${params.toString()}`;
-  window.history.replaceState({}, '', newURL);
-}
-
-
-
-function loadStatesFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const digitsStr = params.get('digits');
-  const minParam = parseInt(params.get('sliderMin'), 10);
-  const maxParam = parseInt(params.get('sliderMax'), 10);
-  if (digitsStr) {
-    const arr = digitsStr.split(',').map(x => parseInt(x, 10));
-    if (arr.length === digits.length && arr.every(x => !isNaN(x))) {
-      arr.forEach((v, i) => digits[i] = v);
-      updateDigitsUI();
-    }
-  }
-  if (!isNaN(minParam)) currentMin = minParam;
-  if (!isNaN(maxParam)) currentMax = maxParam;
-}
-
-
-</script>
-
-<script> // 슬라이더
-         // 슬라이더 설정
-const minTime = 0;    // 00:00 (분 단위)
-const maxTime = 24 * 60; // 24:00 (분 단위)
-function pxToValue(px) {
-  let v = Math.round((px / trackWidth) * (maxTime - minTime) / step) * step + minTime;
-  v = Math.max(minTime, Math.min(v, maxTime));
-  return v;
-}           // 30분 단위
-const track = document.getElementById("sliderTrack");
-const sliderRange = document.getElementById("sliderRange");
-const thumbMin = document.getElementById("sliderThumbMin");
-const thumbMax = document.getElementById("sliderThumbMax");
-const labelMin = document.getElementById("sliderMinLabel");
-const labelMax = document.getElementById("sliderMaxLabel");
-
-let currentMin = minTime;
-let currentMax = maxTime;
-
-let trackWidth = 0;
-
-
-
-window.addEventListener('DOMContentLoaded', () => {
-  trackWidth = track.offsetWidth;
-  loadStatesFromURL(); // URL에서 currentMin, currentMax를 불러옴
-  updateSliderUI();    // trackWidth, currentMin, currentMax 모두 준비된 뒤 커서 위치 갱신
-
-});
-
-function timeToStr(mins) {
-  const h = String(Math.floor(mins / 60)).padStart(2, "0");
-  const m = String(mins % 60).padStart(2, "0");
-  return `${h}:${m}`;
-}
-
-function valueToPx(val) {
-  return ((val - minTime) / (maxTime - minTime)) * trackWidth;
-}
-
-function pxToValue(px) {
-  let v = Math.round((px / trackWidth) * (maxTime - minTime) / step) * step + minTime;
-  v = Math.max(minTime, Math.min(v, maxTime));
-  return v;
-}
-
-function updateSliderUI() {
-  const minPx = valueToPx(currentMin);
-  const maxPx = valueToPx(currentMax);
-
-  // 커서 width(px) 구하기 (Tailwind로 w-[10%] 등 사용 시 실제 px로 변환)
-  const thumbWidth = thumbMin.offsetWidth; // 또는 thumbMax.offsetWidth
-
-  // 커서의 중심이 트랙 끝에 오도록 보정
-  thumbMin.style.left = `${minPx - thumbWidth / 2}px`;
-  thumbMax.style.left = `${maxPx - thumbWidth / 2}px`;
-
-  sliderRange.style.left = `${minPx}px`;
-  sliderRange.style.width = `${maxPx - minPx - 9}px`;
-
-  labelMin.textContent = timeToStr(currentMin);
-  labelMax.textContent = timeToStr(currentMax);
-
-
-}
-
-
-let dragging = null;
-
-function onDrag(e, type) {
-  dragging = type;
-  document.body.style.userSelect = "none";
-
-}
-
-function onMove(e) {
-  if (!dragging) return;
-  const rect = track.getBoundingClientRect();
-  const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-  let val = pxToValue(x);
-
-  if (dragging === "min") {
-    currentMin = Math.min(val, currentMax - step);
-  } else if (dragging === "max") {
-    currentMax = Math.max(val, currentMin + step);
-  }
-  updateSliderUI();
-  saveStateToUrl();
-}
-
-function onUp() {
-  dragging = null;
-  document.body.style.userSelect = "";
-}
-
-thumbMin.addEventListener("mousedown", e => onDrag(e, "min"));
-thumbMax.addEventListener("mousedown", e => onDrag(e, "max"));
-thumbMin.addEventListener("touchstart", e => onDrag(e, "min"));
-thumbMax.addEventListener("touchstart", e => onDrag(e, "max"));
-
-document.addEventListener("mousemove", onMove);
-document.addEventListener("touchmove", onMove);
-document.addEventListener("mouseup", onUp);
-document.addEventListener("touchend", onUp);
-
-window.addEventListener("resize", () => {
-  // trackWidth가 변할 수 있으니 다시 계산
-  updateSliderUI();
-});
-
-updateSliderUI();
-
-<!--슬라이더 커서 간격 조절 버튼-->
-// 1. DOM 요소 참조
-const stepInput = document.getElementById('stepInput');
-const stepDecBtn = document.getElementById('stepDecBtn');
-const stepIncBtn = document.getElementById('stepIncBtn');
-
-// 2. step 값 제한 범위
-const STEP_MIN = 5;
-const STEP_MAX = 60;
-
-// 3. 입력창 값으로 step 동기화 함수
-function getStepValue() {
-  let val = parseInt(stepInput.value, 10);
-  if (isNaN(val) || val < STEP_MIN) val = STEP_MIN;
-  if (val > STEP_MAX) val = STEP_MAX;
-  stepInput.value = val;
-  return val;
-}
-
-// 4. 버튼 이벤트
-stepDecBtn.addEventListener('click', () => {
-  let val = getStepValue();
-  val = Math.max(STEP_MIN, val - 5);
-  stepInput.value = val;
-  updateStep(val);
-});
-
-stepIncBtn.addEventListener('click', () => {
-  let val = getStepValue();
-  val = Math.min(STEP_MAX, val + 5);
-  stepInput.value = val;
-  updateStep(val);
-});
-
-// 5. 입력 직접 수정 시에도 반영
-stepInput.addEventListener('change', () => {
-  let val = getStepValue();
-  updateStep(val);
-});
-
-// 6. 슬라이더에 step 적용 (슬라이더 코드와 연동 필요)
-let step = getStepValue();
-
-function updateStep(newStep) {
-  step = newStep;
-  // 슬라이더에서 step 변수를 사용하는 부분이 있다면 아래처럼 적용
-  // 예: pxToValue, valueToPx 등에서 step 사용
-  // 예시: pxToValue(px) { ... / step) * step ... }
-  // updateSliderUI() 등 호출
-}
-
-
-
-
-
-</script>
+<script src="js/slider.js"></script>
+<script src="js/buttonClick.js"></script>
+<script src="js/rememberPage.js"></script>
 </body>
 </html>
