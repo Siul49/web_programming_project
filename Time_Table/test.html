@@ -2,147 +2,131 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>타임테이블 페이지 2</title>
-
-    <!-- CSS 라이브러리 -->
-    <link rel="stylesheet" href="css/style.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Sheet Js 모듈 -->
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-
+    <title>인터뷰 스케줄러</title>
 </head>
+<body>
+<h2>📄 인터뷰 스케줄 CSV 업로드</h2>
+<input type="file" id="csvInput" accept=".csv" />
+<button id="processBtn">스케줄 생성 & 다운로드</button>
 
-<!-- 배경 -->
-<body class="
-    bg-[#FEE9CE]
-    w-screen h-screen flex justify-center items-center
-">
+<script>
+    class Student {
+        constructor(name, personalNum, possibleTime, column, row) {
+            this.name = name;
+            this.personalNum = personalNum;
+            this.column = column;
+            this.row = row;
+            this.selectCnt = 0;
+            this.possibleTable = Array.from({ length: row }, () => Array(column).fill(false));
 
+            let cnt = 0;
+            for (const s of possibleTime) {
+                if (s.length > 7) {
+                    const tokens = s.split(/,\s*/);
+                    for (let i = 0; i < column; i++) {
+                        try {
+                            const day = this.convertDay(tokens[i]);
+                            this.possibleTable[cnt][day] = true;
+                            this.selectCnt++;
+                        } catch (e) {}
+                    }
+                } else {
+                    const day = this.convertDay(s);
+                    this.possibleTable[cnt][day] = true;
+                    this.selectCnt++;
+                }
+                cnt++;
+            }
+        }
 
-    <!-- 상단 페이지 버튼 -->
-    <button
-            onclick="location.reload();"
-            class="
-            absolute
-            w-[10%] h-[10%]
-            left-[20%] top-[7.5%]
-            bg-[#FDE295] text-black
-            flex justify-center
-            py-2
-            border-black rounded-2xl
-            border-[5px]
-            shadow-[2px_2px_0px_black]
-        ">
-        ※타임테이블 페이지
-    </button>
+        convertDay(token) {
+            switch (token.trim()) {
+                case "3/10(월)": return 0;
+                case "3/11(화)": return 1;
+                case "3/12(수)": return 2;
+                default: return 0;
+            }
+        }
 
+        isPossible(row, col) {
+            return this.possibleTable[row][col];
+        }
 
+        deleteTime(row, col) {
+            if (this.possibleTable[row][col]) {
+                this.possibleTable[row][col] = false;
+                this.selectCnt--;
+            }
+        }
+    }
 
-    <!-- 전체 컨테이너 (하얀색 박스) -->
-    <div class="
-            relative
-            w-[65%] h-[75%]
-            bg-white border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black
-            flex justify-center items-center
-            ">
+    let csvData = null;
 
-        <!-- 분홍색 박스 -->
-        <button class="
-                absolute
-                w-[40%] h-[60vh]
-                right-[52%]
-                bg-[#FFC5D3] rounded-3xl
-                shadow-[4px_4px_0px_black]
-                border-4 border-black
-                flex justify-center items-center px-4
-                text-2xl text-center
-                hover:bg-pink-300 transition-all
-                cursor-pointer
-            ">
+    document.getElementById("csvInput").addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        Papa.parse(file, {
+            complete: function(results) {
+                csvData = results.data;
+                alert("CSV 로딩 완료!");
+            }
+        });
+    });
 
-            드래그 & 드롭, 클릭으로
-            <br> 파일 (.xlsx, etc) 첨부하기
+    document.getElementById("processBtn").addEventListener("click", function () {
+        if (!csvData) {
+            alert("먼저 CSV 파일을 업로드하세요.");
+            return;
+        }
 
-            <!-- 파일 입력창 -->
-            <input
-                    type="file"
-                    accept=".xlsx"
-                    class="
-                    absolute
-                    w-full h-full
-                    cursor-pointer
-                    text-xl
-                    opacity-0
-                "/>
-            <!-- end of 파일 입력창 -->
+        const row = 4;
+        const col = 3;
+        const unit = 2;
+        const students = [];
+        const map = new Map();
 
-        </button> <!-- end of 분홍색 박스 -->
+        for (const line of csvData) {
+            const [name, personalNum, ...times] = line;
+            if (!map.has(personalNum)) {
+                map.set(personalNum, true);
+                students.push(new Student(name, personalNum, times, col, row));
+            }
+        }
 
-        <!-- 노란색 박스 -->
-        <button class="
-                absolute
-                w-[38%] h-[18vh]
-                right-[8%] top-[9.5%]
-                bg-[#FDE295] rounded-3xl
-                drop-shadow-[4px_4px_0px_black]
-                border-4 border-black
-                flex justify-center items-center
-                text-3xl
-                hover:bg-yellow-300 transition-all
-            ">
-            ※생성하기※
-        </button> <!-- end of 노란색 박스 -->
+        const timeTable = Array.from({ length: row }, () => Array(col).fill(""));
 
-        <!-- 연한 회색 박스 -->
-        <div class="
-                absolute
-                w-[38%] h-[31vh]
-                right-[8%] top-[37%]
-                bg-[#EDEDED] rounded-3xl
-                shadow-[4px_4px_0px_black]
-                border-4 border-black
-                flex justify-center items-center
-                text-3xl
-                hover:bg-gray-200 transition-all
-            ">
-            설명
-        </div>
+        for (let i = 0; i < row; i++) {
+            for (let j = 0; j < col; j++) {
+                students.sort((a, b) => a.selectCnt - b.selectCnt);
 
-        <!-- 회색 박스 -->
-        <button class="
-                absolute
-                w-[20%] h-[6vh]
-                right-[26%] top-[82%]
-                bg-[#D9D9D9] rounded-3xl
-                drop-shadow-[4px_4px_0px_black]
-                border-4 border-black
-                flex justify-center items-center
-                text-xl
-                hover:bg-gray-300 transition-all
-            ">
-            개발자 코멘트
-        </button>
+                const selected = [];
+                let cnt = 0;
 
-        <!-- 하늘색 박스 -->
-        <button onclick="history.back()" class="
-                absolute
-                w-[16%] h-[6vh]
-                right-[8%] top-[82%]
-                bg-[#BBDBF4] rounded-3xl
-                drop-shadow-[4px_4px_0px_black]
-                border-4 border-black
-                flex justify-center items-center
-                text-xl
-                hover:bg-blue-300 transition-all
-            ">
-            이전으로
-        </button>
+                for (let k = 0; k < students.length && cnt < unit; k++) {
+                    if (students[k].isPossible(i, j)) {
+                        timeTable[i][j] += `${students[k].name}/${students[k].personalNum}, `;
+                        selected.push(students[k].personalNum);
+                        cnt++;
+                    }
+                }
 
-    </div> <!-- end of 전체 컨테이너 -->
+                for (const id of selected) {
+                    const idx = students.findIndex(s => s.personalNum === id);
+                    if (idx !== -1) students.splice(idx, 1);
+                }
 
+                if (timeTable[i][j] !== "") {
+                    for (const student of students) {
+                        student.deleteTime(i, j);
+                    }
+                    timeTable[i][j] = timeTable[i][j].replace(/, $/, "");
+                }
+            }
+        }
 
-
+        const csvString = Papa.unparse(timeTable);
+        const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+        saveAs(blob, "schedule.csv");
+    });
+</script>
 </body>
 </html>
