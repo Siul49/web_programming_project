@@ -1,94 +1,148 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8" />
-    <title>웹 계산기</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임테이블 페이지 2</title>
+
+    <!-- CSS 라이브러리 -->
+    <link rel="stylesheet" href="css/style.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Sheet Js 모듈 -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
 </head>
-<body class="min-h-screen flex items-center justify-center bg-gray-100">
-<div class="bg-white p-6 rounded-2xl shadow-lg w-72">
-    <input
-            type="text"
-            id="display"
-            disabled
-            class="w-full h-12 text-right text-2xl px-4 mb-4 border border-gray-300 rounded-md bg-gray-50"
-    />
-    <div class="grid grid-cols-4 gap-3">
-        <button onclick="appendNumber('7')" class="btn">7</button>
-        <button onclick="appendNumber('8')" class="btn">8</button>
-        <button onclick="appendNumber('9')" class="btn">9</button>
-        <button onclick="setOperator('+')" class="btn bg-blue-200">+</button>
 
-        <button onclick="appendNumber('4')" class="btn">4</button>
-        <button onclick="appendNumber('5')" class="btn">5</button>
-        <button onclick="appendNumber('6')" class="btn">6</button>
-        <button onclick="setOperator('-')" class="btn bg-blue-200">-</button>
+<!-- 배경 -->
+<body class="
+    bg-[#FEE9CE]
+    w-screen h-screen flex justify-center items-center
+">
 
-        <button onclick="appendNumber('1')" class="btn">1</button>
-        <button onclick="appendNumber('2')" class="btn">2</button>
-        <button onclick="appendNumber('3')" class="btn">3</button>
-        <button onclick="setOperator('*')" class="btn bg-blue-200">*</button>
 
-        <button onclick="appendNumber('0')" class="btn">0</button>
-        <button onclick="clearDisplay()" class="btn bg-red-200">C</button>
-        <button onclick="calculate()" class="btn bg-green-200">=</button>
-        <button onclick="setOperator('/')" class="btn bg-blue-200">/</button>
-    </div>
-</div>
+    <!-- 상단 페이지 버튼 -->
+    <button
+            onclick="location.reload();"
+            class="
+            absolute
+            w-[10%] h-[10%]
+            left-[20%] top-[7.5%]
+            bg-[#FDE295] text-black
+            flex justify-center
+            py-2
+            border-black rounded-2xl
+            border-[5px]
+            shadow-[2px_2px_0px_black]
+        ">
+        ※타임테이블 페이지
+    </button>
 
-<script>
-    let currentInput = '';
-    let operator = '';
-    let firstNumber = '';
 
-    function appendNumber(num) {
-        currentInput += num;
-        updateDisplay(currentInput);
-    }
 
-    function setOperator(op) {
-        if (currentInput === '') return;
-        firstNumber = currentInput;
-        operator = op;
-        currentInput = '';
-    }
+    <!-- 전체 컨테이너 (하얀색 박스) -->
+    <div class="
+            relative
+            w-[65%] h-[75%]
+            bg-white border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black
+            flex justify-center items-center
+            ">
 
-    function calculate() {
-        if (firstNumber === '' || currentInput === '') return;
+        <!-- 분홍색 박스 -->
+        <button class="
+                absolute
+                w-[40%] h-[60vh]
+                right-[52%]
+                bg-[#FFC5D3] rounded-3xl
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center px-4
+                text-2xl text-center
+                hover:bg-pink-300 transition-all
+                cursor-pointer
+            ">
 
-        const num1 = parseFloat(firstNumber);
-        const num2 = parseFloat(currentInput);
-        let result = 0;
+            드래그 & 드롭, 클릭으로
+            <br> 파일 (.xlsx, etc) 첨부하기
 
-        switch (operator) {
-            case '+': result = num1 + num2; break;
-            case '-': result = num1 - num2; break;
-            case '*': result = num1 * num2; break;
-            case '/': result = num2 !== 0 ? num1 / num2 : 'Error'; break;
-        }
+            <!-- 파일 입력창 -->
+            <input
+                    type="file"
+                    accept=".xlsx"
+                    class="
+                    absolute
+                    w-full h-full
+                    cursor-pointer
+                    text-xl
+                    opacity-0
+                "/>
+            <!-- end of 파일 입력창 -->
 
-        updateDisplay(result);
-        currentInput = '';
-        operator = '';
-        firstNumber = '';
-    }
+        </button> <!-- end of 분홍색 박스 -->
 
-    function clearDisplay() {
-        currentInput = '';
-        operator = '';
-        firstNumber = '';
-        updateDisplay('');
-    }
+        <!-- 노란색 박스 -->
+        <button class="
+                absolute
+                w-[38%] h-[18vh]
+                right-[8%] top-[9.5%]
+                bg-[#FDE295] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-yellow-300 transition-all
+            ">
+            ※생성하기※
+        </button> <!-- end of 노란색 박스 -->
 
-    function updateDisplay(value) {
-        document.getElementById('display').value = value;
-    }
-</script>
+        <!-- 연한 회색 박스 -->
+        <div class="
+                absolute
+                w-[38%] h-[31vh]
+                right-[8%] top-[37%]
+                bg-[#EDEDED] rounded-3xl
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-gray-200 transition-all
+            ">
+            설명
+        </div>
 
-<style>
-    .btn {
-        @apply py-2 text-lg font-semibold bg-gray-200 rounded-md hover:bg-gray-300 transition;
-    }
-</style>
+        <!-- 회색 박스 -->
+        <button class="
+                absolute
+                w-[20%] h-[6vh]
+                right-[26%] top-[82%]
+                bg-[#D9D9D9] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-gray-300 transition-all
+            ">
+            개발자 코멘트
+        </button>
+
+        <!-- 하늘색 박스 -->
+        <button onclick="history.back()" class="
+                absolute
+                w-[16%] h-[6vh]
+                right-[8%] top-[82%]
+                bg-[#BBDBF4] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-blue-300 transition-all
+            ">
+            이전으로
+        </button>
+
+    </div> <!-- end of 전체 컨테이너 -->
+
+
+
 </body>
 </html>

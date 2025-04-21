@@ -1,7 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.border-shadow-round {
-    @apply border-black border-[5px] shadow-[5px_5px_0px_black] rounded-3xl;
-}

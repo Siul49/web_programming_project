@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
 
-        <!-- Sheet Js 모듈 -->
+    <!-- Sheet Js 모듈 -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
 </head>
@@ -25,131 +25,118 @@
 <button
         onclick="location.reload();"
         class="
-        absolute
-        w-[10%] h-[10%]
-        left-[20%] top-[5%]
-        bg-[#FDE295] text-black
-        flex justify-center
-        py-2
-        border-black rounded-2xl
-        border-[5px]
-    ">
+            absolute
+            w-[10%] h-[10%]
+            left-[20%] top-[7.5%]
+            bg-[#FDE295] text-black
+            flex justify-center
+            py-2
+            border-black rounded-2xl
+            border-[5px]
+            shadow-[2px_2px_0px_black]
+        ">
     ※타임테이블 페이지
 </button>
 
-<button
-        class="
-        absolute
-        w-[10%] h-[10%]
-        left-[30%] top-[8%]
-        bg-[#EFCCF2] text-black
-        flex justify-center
-        py-2
-        border-black rounded-2xl
-        border-[5px]
-    ">
-    ※맛집 찾기
-</button>
 
 
 <!-- 전체 컨테이너 (하얀색 박스) -->
 <div class="
-        relative
-        w-[65%] h-[75%]
-        bg-white border-[5px] shadow-md rounded-2xl border-black
-        flex justify-center items-center
-        ">
+            relative
+            w-[65%] h-[75%]
+            bg-white border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black
+            flex justify-center items-center
+            ">
 
     <!-- 분홍색 박스 -->
     <button class="
-            absolute
-            w-[40%] h-[60vh]
-            right-[52%]
-            bg-[#FFC5D3] rounded-3xl
-            shadow-[4px_4px_0px_black]
-            border-4 border-black
-            flex justify-center items-center px-4
-            text-2xl text-center
-            hover:bg-pink-300 transition-all
-            cursor-pointer
-        ">
-        <div>
-            드래그 & 드롭, 클릭으로
-            <br> 파일 (.xlsx, etc) 첨부하기
-        </div>
+                absolute
+                w-[40%] h-[60vh]
+                right-[52%]
+                bg-[#FFC5D3] rounded-3xl
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center px-4
+                text-2xl text-center
+                hover:bg-pink-300 transition-all
+                cursor-pointer
+            ">
+
+        드래그 & 드롭, 클릭으로
+        <br> 파일 (.xlsx, etc) 첨부하기
 
         <!-- 파일 입력창 -->
         <input
                 type="file"
                 accept=".xlsx"
                 class="
-                absolute
-                w-full h-full
-                cursor-pointer
-                text-xl
-                opacity-0
-            "/>
+                    absolute
+                    w-full h-full
+                    cursor-pointer
+                    text-xl
+                    opacity-0
+                "/>
         <!-- end of 파일 입력창 -->
 
     </button> <!-- end of 분홍색 박스 -->
 
     <!-- 노란색 박스 -->
     <button class="
-            absolute
-            w-[38%] h-[18vh]
-            right-[8%] top-[9.5%]
-            bg-[#FDE295] rounded-3xl
-            drop-shadow-[4px_4px_0px_black]
-            border-4 border-black
-            flex justify-center items-center
-            text-3xl
-            hover:bg-yellow-300 transition-all
-        ">
+                absolute
+                w-[38%] h-[18vh]
+                right-[8%] top-[9.5%]
+                bg-[#FDE295] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-yellow-300 transition-all
+            ">
         ※생성하기※
     </button> <!-- end of 노란색 박스 -->
 
     <!-- 연한 회색 박스 -->
     <div class="
-            absolute
-            w-[38%] h-[31vh]
-            right-[8%] top-[37%]
-            bg-[#EDEDED] rounded-3xl
-            shadow-[4px_4px_0px_black]
-            border-4 border-black
-            flex justify-center items-center
-            text-3xl
-            hover:bg-gray-200 transition-all
-        ">
+                absolute
+                w-[38%] h-[31vh]
+                right-[8%] top-[37%]
+                bg-[#EDEDED] rounded-3xl
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-gray-200 transition-all
+            ">
         설명
     </div>
 
     <!-- 회색 박스 -->
     <button class="
-            absolute
-            w-[20%] h-[6vh]
-            right-[26%] top-[82%]
-            bg-[#D9D9D9] rounded-3xl
-            drop-shadow-[4px_4px_0px_black]
-            border-4 border-black
-            flex justify-center items-center
-            text-xl
-            hover:bg-gray-300 transition-all
-        ">
+                absolute
+                w-[20%] h-[6vh]
+                right-[26%] top-[82%]
+                bg-[#D9D9D9] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-gray-300 transition-all
+            ">
         개발자 코멘트
     </button>
 
     <!-- 하늘색 박스 -->
     <button onclick="history.back()" class="
-            absolute
-            w-[16%] h-[6vh]
-            right-[8%] top-[82%]
-            bg-[#BBDBF4] rounded-3xl
-            drop-shadow-[4px_4px_0px_black]
-            border-4 border-black
-            flex justify-center items-center
-            text-xl
-            hover:bg-blue-300 transition-all
-        ">
+                absolute
+                w-[16%] h-[6vh]
+                right-[8%] top-[82%]
+                bg-[#BBDBF4] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-blue-300 transition-all
+            ">
         이전으로
     </button>
 
