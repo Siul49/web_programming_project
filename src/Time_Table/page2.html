@@ -115,7 +115,8 @@
     </div>
 
     <!-- 회색 박스 -->
-    <button class="
+
+    <button onclick="openModal()" class="
                 absolute
                 w-[20%] h-[6vh]
                 right-[26%] top-[82%]
@@ -126,9 +127,34 @@
                 text-xl
                 hover:bg-gray-300 transition-all
             ">
-        개발자 코멘트
+        제작자 코멘트
     </button>
 
+    <!-- 모달 -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/10 z-50 flex items-center justify-center">
+        <div class="relative w-[30%] h-[50%] bg-[#F8D7DF]/95 border-4 border-black rounded-xl shadow-lg pt-12">
+            <!-- 모달 상단 -->
+            <div class="absolute top-0 left-0 w-full h-12 bg-[#F2F2F2]/95 border-b-4 border-black rounded-t-xl flex items-center px-4 justify-between">
+                <p id="modal-mainText" class="text-base">여기는 모달 상단(제목)입니다람쥐!</p>
+                <button onclick="closeModal()" class="p-1">
+                    <img src="../../resource/close.svg" alt="닫기 버튼" class="w-5 h-5" />
+                </button>
+            </div>
+
+            <!-- 모달 본문 -->
+            <div class="absolute top-16 left-[5%] right-[5%] w-[90%] h-[70%] bg-[#F2F2F2]/95 rounded-lg p-4">
+                <p id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐</p>
+            </div>
+
+            <!-- 버튼 -->
+            <button onclick="lastStep()" class="absolute bottom-5 left-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition last-button">
+                이전으로
+            </button>
+            <button onclick="nextStep()" class="absolute bottom-5 right-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition next-button">
+                다음으로
+            </button>
+        </div>
+    </div>
     <!-- 하늘색 박스 -->
     <button onclick="history.back()" class="
                 absolute
@@ -147,6 +173,6 @@
 </div> <!-- end of 전체 컨테이너 -->
 
 
-
+<script src="js/comment_modal.js"></script>
 </body>
 </html>

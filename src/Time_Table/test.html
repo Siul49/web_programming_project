@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임테이블 페이지 1 - 동적</title>
+
+    <!-- Tailwind CSS로 빌드된 style.css 불러오기 -->
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-[#FEE9CE] w-screen h-screen flex justify-center items-center">
+<!-- 12시 까지? -->
+<!-- 상단 페이지 버튼 -->
+<button onclick="location.reload();" class="absolute w-[10%] h-[10%] left-[20%] top-[8%]
+  bg-[#FDE295] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] shadow-[2px_2px_0px_black] ">
+    ※타임테이블 페이지
+</button>
+<a href="page1_static.html" class="absolute w-[8%] h-[10%] left-[30.5%] top-[8%]
+  bg-[#dbf0ff] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] shadow-[2px_2px_0px_black] ">
+    ※정적으로 변환
+</a>
+
+<!-- ⚪ 메인 컨테이너 (전체 배경 흰색 틀) -->
+<div
+        class="
+        relative
+        w-[65%] h-[75%]
+        bg-white
+        border-[5px]  border-black
+        shadow-[4px_4px_0px_black]
+        rounded-2xl
+        flex justify-center items-center
+        ">
+
+    <!-- 🟦 하단 시간 조절 영역 (슬라이더 포함) -->
+    <div
+            class='
+          absolute
+          w-[86%] h-[45%] top-[50%] left-[5%]
+          bg-[#BBDBF4]
+          border-[5px] border-black
+          shadow-[4px_4px_0px_black]
+          rounded-2xl
+          flex justify-center'>
+
+        <!-- 상단 탭바 (하단 박스 위에 흰색 헤더) -->
+        <div class='relative w-[100%] h-[20%] top-0 p-2 bg-[#FFF] border-black  border-b-[5px]  rounded-tl-xl rounded-tr-xl  flex items-center text-[20px]'>
+            시작 시간 | 종료 시간 | 팀 당 배정될 시간
+        </div>
+
+        <!-- 슬라이더 트랙 -->
+        <div id="sliderTrack" class="absolute w-[85%] h-[20%] bottom-[30%] bg-[#FEE9CE] border-black border-[5px] rounded-2xl -translate-y-1/2">
+            <!-- 선택 범위 바 -->
+            <div id="sliderRange" class="absolute h-full bg-blue-300 opacity-60 rounded-xl z-10"></div>
+
+            <!-- 최소 커서 -->
+            <div id="sliderThumbMin" class="absolute w-[10%] h-full bg-white border-black border-[4px] rounded-xl flex items-center justify-center text-lg font-bold shadow z-20 cursor-pointer select-none -translate-y-1/2 bottom-[25%]">
+                <span id="sliderMinLabel">00:00</span>
+            </div>
+
+            <!-- 최대 커서 -->
+            <div id="sliderThumbMax" class="absolute w-[10%] h-full bg-white border-black border-[4px] rounded-xl flex items-center justify-center text-lg font-bold shadow z-20 cursor-pointer select-none -translate-y-1/2 top-[100%]">
+                <span id="sliderMaxLabel">24:00</span>
+            </div>
+        </div>
+
+
+        <div class="absolute w-[40%] h-[20%] bottom-[11%] flex justify-center">
+            <button id="intervalDecBtn" class="relative w-[20%] h-[90%] top-[5%] right-[10%] bg-[#FDE295] hover:opacity-80 items-center justify-center border-black border-[5px] text-[30px] rounded-xl">
+                ◀
+            </button>
+
+            <span id="intervalNum" class="relative w-[20%] h-[100%]  bg-[#FFF] border-black border-[5px] rounded-xl z-20 text-[30px] text-center">5</span>
+
+            <button id="intervalIncBtn" class="relative w-[20%] h-[90%] top-[5%] left-[10%] bg-[#FDE295] hover:opacity-80 items-center justify-center border-black border-[5px] text-[30px] rounded-xl">
+                ▶
+            </button>
+        </div>
+    </div>
+
+    <!-- 🟩 인원 조작 패널 (좌측 상단 영역) -->
+    <div class='absolute w-[45%] h-[40%] right-[50%] bottom-[55%] bg-[#D3D594] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl mt-12 z-20'>
+
+        <!-- 상단 탭바 -->
+        <div class='absolute w-full h-[20%] bg-[#FFF] p-2 border-black border-b-[5px]  rounded-tl-xl rounded-tr-xl z-20 flex items-center text-[20px]'>
+            전체 인원 | 팀 당 인원
+        </div>
+
+        <!-- 위쪽 삼각 버튼들 (인원 수 증가) -->
+        <div class="relative w-full h-[10%] top-[28%]">
+            <button class="absolute left-[12%] hover:opacity-80 digit-up-btn digitUp" data-index="4">
+                <img src="../../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[27%] hover:opacity-80 digit-up-btn digitUp" data-index="5">
+                <img src="../../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[42%] hover:opacity-80 digit-up-btn digitUp" data-index="6">
+                <img src="../../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[70%] hover:opacity-80 digit-up-btn digitUp" data-index="7">
+                <img src="../../resource/uptriangle.png" alt="인원 증가" class="w-65 h-31">
+            </button>
+        </div>
+
+        <!-- 인원 수 입력창 (전체 인원 / 팀당 인원) -->
+        <div class="relative w-full h-[30%] top-[33%]">
+            <span id="digit0" class="absolute w-[12%] h-[100%] left-[10%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <span id="digit1" class="absolute w-[12%] h-[100%] left-[25%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <span id="digit2" class="absolute w-[12%] h-[100%] left-[40%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <p class="absolute w-[10%] h-full text-[30px] right-[33%] top-[50%] " >명</p>
+
+            <span id="digit3" class="absolute w-[12%] h-[100%] left-[68%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <p class="absolute w-[20%] h-full text-[30px] left-[82%] top-[50%] " >명씩</p>
+        </div>
+
+        <!-- 아래쪽 삼각 버튼들 (인원 수 감소) -->
+        <div class="relative w-full h-[10%] top-[37%]">
+            <button class="absolute left-[12%] hover:opacity-80 digit-down-btn digitDown" data-index="4" >
+                <img src="../../resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[27%] hover:opacity-80 digit-down-btn digitDown" data-index="5">
+                <img src="../../resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[42%] hover:opacity-80 digit-down-btn digitDown" data-index="6">
+                <img src="../../resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[70%] hover:opacity-80 digit-down-btn digitDown" data-index="7">
+                <img src="../../resource/downtriangle.png" alt="인원 감소" class="w-65 h-31">
+            </button>
+        </div>
+    </div>
+
+    <!-- 🟪 날짜/요일 조작 패널 (우측 상단 영역) -->
+    <div class='absolute w-[43%] h-[35%] right-[5%] bottom-[38%] bg-[#FFC5D3] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl mt-12 z-20'>
+
+        <!-- 상단 탭바 -->
+        <div class='absolute w-full h-[20%] bg-[#FFF] p-2 border-black border-b-[5px] rounded-tl-xl rounded-tr-xl z-20 flex items-center text-[20px]'>
+            시작일 | 기간
+        </div>
+
+        <!-- 위쪽 삼각 버튼들 (날짜 증가) -->
+        <div class="relative w-full h-[10%] top-[25%]">
+            <button class="absolute left-[9.8%] hover:opacity-80 digit-up-btn digitUp" data-index="1">
+                <img src="../../resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[25%] hover:opacity-80 digit-up-btn digitUp" data-index="2">
+                <img src="../../resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[62.5%] hover:opacity-80 digit-up-btn digitUp" data-index="3">
+                <img src="../../resource/uptriangle.png" alt="날짜 증가" class="w-65 h-31">
+            </button>
+        </div>
+
+        <!-- 날짜 입력창 (날짜 / 요일) -->
+        <div class="relative w-full h-[30%] top-[32%]">
+            <span id="digit4" class="absolute w-[12%] h-[115%] left-[8%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <span id="digit5" class="absolute w-[12%] h-[115%] left-[23.3%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <p class="absolute w-[20%] h-full text-[30px] left-[39%] top-[50%]">일부터</p>
+
+            <span id="digit6" class="absolute w-[12%] h-[115%] left-[61%] bg-[#FFF] border-black border-[5px] rounded-xl text-[50px] text-center"></span>
+
+            <p class="absolute w-[20%] h-full text-[30px] left-[77%] top-[50%]">일간</p>
+        </div>
+
+        <!-- 아래쪽 삼각 버튼들 (날짜 감소) -->
+        <div class="relative w-full top-[40%]">
+            <button class="absolute left-[10%] hover:opacity-80 digit-down-btn digitDown" data-index="1">
+                <img src="../../resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[25%] hover:opacity-80 digit-down-btn digitDown" data-index="2">
+                <img src="../../resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+            </button>
+
+            <button class="absolute left-[63%] hover:opacity-80 digit-down-btn digitDown" data-index="3">
+                <img src="../../resource/downtriangle.png" alt="날짜 감소" class="w-65 h-31">
+            </button>
+        </div>
+    </div>
+
+    <!-- 🟨 다음 단계로 이동 버튼 -->
+    <a href="page2.html" class='absolute w-[30%] h-[18%] right-[5%] top-0 bg-[#FDE295] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl  hover:border-[6px] mt-12 z-20 flex justify-center items-center text-[50px]'>
+        ※다음으로※
+    </a>
+
+    <!-- 🟧 언어 전환 버튼 / 회색 코멘트 박스 -->
+    <div class='absolute w-[12%] h-[10%] right-[36%] top-0 bg-[#EFCCF2] border-[5px] shadow-[2px_2px_0px_black] border-black rounded-2xl mt-12 z-20 flex justify-center items-center'>
+        제작자 소개
+    </div>
+    <button onclick="openModal()" class='absolute w-[12%] h-[7%] right-[36%] top-[11%] bg-[#D9D9D9] border-[5px] shadow-[2px_2px_0px_black] rounded-2xl border-black mt-12 z-20 flex justify-center items-center'>
+        제작자 코멘트
+    </button>
+    <!-- 모달 -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/10 z-50 flex items-center justify-center">
+        <div class="relative w-[30%] h-[50%] bg-[#F8D7DF]/95 border-4 border-black rounded-xl shadow-lg pt-12">
+            <!-- 모달 상단 -->
+            <div class="absolute top-0 left-0 w-full h-12 bg-[#F2F2F2]/95 border-b-4 border-black rounded-t-xl flex items-center px-4 justify-between">
+                <p id="modal-mainText" class="text-base">여기는 모달 상단(제목)입니다람쥐!</p>
+                <button onclick="closeModal()" class="p-1">
+                    <img src="../../resource/close.svg" alt="닫기 버튼" class="w-5 h-5" />
+                </button>
+            </div>
+
+            <!-- 모달 본문 -->
+            <div class="absolute top-16 left-[5%] right-[5%] w-[90%] h-[70%] bg-[#F2F2F2]/95 rounded-lg p-4">
+                <p id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐</p>
+            </div>
+
+            <!-- 버튼 -->
+            <button onclick="lastStep()" class="absolute bottom-5 left-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition last-button">
+                이전으로
+            </button>
+            <button onclick="nextStep()" class="absolute bottom-5 right-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition next-button">
+                다음으로
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/slider.js"></script>
+<script src="js/buttonClick.js"></script>
+<script src="js/rememberPage.js"></script>
+<script src="js/comment_modal.js"></script>
+</body>
+</html>

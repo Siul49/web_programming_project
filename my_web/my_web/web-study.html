@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimaTablePage-Comment</title>
+    <link rel="stylesheet" href="web-study.css" />
+    <link rel="stylesheet" href="modal.css"/>
+    <script src="web-study.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <button class="Comment-Button" onclick="openModal()">튜토리얼 시작</button>
+      <!-- 여기서부터 모달 창 코드-->
+      <div id="modal" class="modal hidden">
+        <div class="Modal-Content">
+          <div class="Modal-Top">
+            <p id="modal-mainText">여기는 모달 상단(제목)입니다람쥐!</p>
+            <button class="close-button" onclick="closeModal()">
+              <img src="../close.svg" alt="닫기 버튼">
+            </button>
+          </div>
+          <div class="Modal-Main">
+            <p id="modal-ContentText">코드 설명 부분입니다람쥐</p>
+          </div>
+          <button class="last-button" onclick="lastStep()">이전으로</button>
+          <button class="next-button" onclick="nextStep()">다음으로</button>
+        </div>
+      </div> 
+    </main>
+  </body>
+</html>

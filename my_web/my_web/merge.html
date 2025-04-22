@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TimaTablePage-Comment (Tailwind)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+        font-family: 'TAEBAEKfont';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKfont.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        }
+
+        body, button, input, textarea, p {
+        font-family: 'TAEBAEKfont', sans-serif;
+        }
+    </style>
+    </head>
+    <body class="flex items-center justify-center w-screen h-screen bg-[#FFFEE3] overflow-x-hidden">
+
+    <main class="relative flex w-4/5 h-[75%] bg-[#FAFAFA] border-4 border-black shadow-lg rounded-xl">
+        <button onclick="openModal()" class="absolute top-[11%] right-[36%] w-[12%] h-[10%] bg-[#D9D9D9] border-4 border-black rounded-xl shadow-md hover:bg-[#C1C1C1] active:scale-95 transition">
+        튜토리얼 시작
+        </button>
+
+        <!-- 모달 -->
+        <div id="modal" class="hidden fixed inset-0 bg-black/10 z-50 flex items-center justify-center">
+        <div class="relative w-[30%] h-[50%] bg-[#F8D7DF]/95 border-4 border-black rounded-xl shadow-lg pt-12">
+            <!-- 모달 상단 -->
+            <div class="absolute top-0 left-0 w-full h-12 bg-[#F2F2F2]/95 border-b-4 border-black rounded-t-xl flex items-center px-4 justify-between">
+            <p id="modal-mainText" class="text-base">여기는 모달 상단(제목)입니다람쥐!</p>
+            <button onclick="closeModal()" class="p-1">
+                <img src="../close.svg" alt="닫기 버튼" class="w-5 h-5" />
+            </button>
+            </div>
+
+            <!-- 모달 본문 -->
+            <div class="absolute top-16 left-[5%] right-[5%] w-[90%] h-[70%] bg-[#F2F2F2]/95 rounded-lg p-4">
+            <p id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐</p>
+            </div>
+
+            <!-- 버튼 -->
+            <button onclick="lastStep()" class="absolute bottom-5 left-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition last-button">
+            이전으로
+            </button>
+            <button onclick="nextStep()" class="absolute bottom-5 right-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition next-button">
+            다음으로
+            </button>
+        </div>
+        </div>
+    </main>
+
+    <script>
+        let step = 1;
+
+        function openModal() {
+        document.getElementById("modal").classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+        step = 0;
+        updateModalText();
+        }
+
+        function closeModal() {
+        document.getElementById("modal").classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+        }
+
+        function nextStep() {
+        step++;
+        updateModalText();
+        }
+
+        function lastStep() {
+        step--;
+        updateModalText();
+        }
+
+        function updateModalText() {
+        const text = document.getElementById("modal-ContentText");
+        const last_btn = document.querySelector(".last-button");
+        const next_btn = document.querySelector(".next-button");
+
+        if (step === 0) {
+            text.textContent = "허헝~";
+            last_btn.style.display = "none";
+            next_btn.textContent = "다음으로";
+        } else if (step === 1) {
+            text.textContent = "안녕하세융~~";
+            last_btn.style.display = "inline-block";
+            next_btn.textContent = "다음으로";
+        } else if (step === 2) {
+            text.textContent = "모달 창을 한 번 만들어봤어융";
+        } else if (step === 3) {
+            text.textContent = "쓸지 말지는 잘 모르겠으나 괜찮나용?";
+        } else if (step === 4) {
+            text.textContent = "그냥... 그렇다구용... 2주 가량 남았는데 파이팅 해보아용~";
+        } else if (step === 5) {
+            text.textContent = "A+를 향해서~ 빠잉";
+            next_btn.textContent = "끝내기";
+        } else {
+            closeModal();
+        }
+        }
+    </script>
+</body>
+</html>
