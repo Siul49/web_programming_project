@@ -6,13 +6,10 @@ document.getElementById("csvInput").addEventListener("change", function (e) {
     const file = e.target.files[0];
     Papa.parse(file, {
         complete: function(results) {
-            console.log("파싱 결과:", results); // 디버깅용
             csvData = results.data;
-        },
-        skipEmptyLines: true,  // 빈 줄 무시
-        encoding: "UTF-8",     // 한글 문제 방지
+            alert("CSV 로딩 완료!");
+        }
     });
-
 });
 
 document.getElementById("processBtn").addEventListener("click", function () {
@@ -67,6 +64,6 @@ document.getElementById("processBtn").addEventListener("click", function () {
     }
 
     const csvString = Papa.unparse(timeTable);
-    const blob = new Blob([csvString], { type: "text/csv;charset=EUC-KR;" });
+    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
     saveAs(blob, "schedule.csv");
 });

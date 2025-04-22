@@ -12,6 +12,11 @@
     <!-- Sheet Js 모듈 -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
+    <script type="module" src="js/timetable_maker/app.js"></script>
+
+    <!--파일 불러오는 라이브러리-->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 </head>
 
 <!-- 배경 -->
@@ -68,7 +73,8 @@
         <!-- 파일 입력창 -->
         <input
                 type="file"
-                accept=".xlsx"
+                id="csvInput"
+                accept=".csv"
                 class="
                     absolute
                     w-full h-full
@@ -81,7 +87,8 @@
     </button> <!-- end of 분홍색 박스 -->
 
     <!-- 노란색 박스 -->
-    <button class="
+    <button id="processBtn"
+            class="
                 absolute
                 w-[38%] h-[18vh]
                 right-[8%] top-[9.5%]

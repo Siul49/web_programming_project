@@ -9,6 +9,8 @@
 <input type="file" id="csvInput" accept=".csv" />
 <button id="processBtn">스케줄 생성 & 다운로드</button>
 
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 <script>
     class Student {
         constructor(name, personalNum, possibleTime, column, row) {
