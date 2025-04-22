@@ -1,13 +1,13 @@
-// ½½¶óÀÌ´õ ¼³Á¤ °ü·Ã º¯¼öµé
-const minTime = 0; // 00:00 (ºĞ ´ÜÀ§)
-const maxTime = 24 * 60; // 24:00 (ºĞ ´ÜÀ§)
+// ìŠ¬ë¼ì´ë” ì „ì²´ ì‹œê°„ ë²”ìœ„(ë¶„ ë‹¨ìœ„)
+const minTime = 0; // 00:00 (ê°€ì¥ ì´ë¥¸ ì‹œê°„)
+const maxTime = 24 * 60; // 24:00 (ê°€ì¥ ëŠ¦ì€ ì‹œê°„, ë¶„ ë‹¨ìœ„)
 
-let currentMin = minTime; // ÇöÀç ¼±ÅÃµÈ ÃÖ¼Ò ½Ã°£
-let currentMax = maxTime; // ÇöÀç ¼±ÅÃµÈ ÃÖ´ë ½Ã°£
+let currentMin = minTime; // í˜„ì¬ ì„ íƒëœ ìµœì†Œ ì‹œê°„(ë¶„)
+let currentMax = maxTime; // í˜„ì¬ ì„ íƒëœ ìµœëŒ€ ì‹œê°„(ë¶„)
 
-let trackWidth = 0; // ½½¶óÀÌ´õ Æ®·¢ÀÇ ³Êºñ (px)
+let trackWidth = 0; // ìŠ¬ë¼ì´ë” íŠ¸ë™ì˜ ë„ˆë¹„(px)
 
-// DOM ¿ä¼Òµé
+// DOM ìš”ì†Œ ê°€ì ¸ì˜¤ê¸°
 const track = document.getElementById("sliderTrack");
 const sliderRange = document.getElementById("sliderRange");
 const thumbMin = document.getElementById("sliderThumbMin");
@@ -15,81 +15,83 @@ const thumbMax = document.getElementById("sliderThumbMax");
 const labelMin = document.getElementById("sliderMinLabel");
 const labelMax = document.getElementById("sliderMaxLabel");
 
-// ºĞ(minute)À» HH:MM Çü½ÄÀÇ ¹®ÀÚ¿­·Î º¯È¯
+// ë¶„(minute)ì„ "HH:MM" í˜•íƒœì˜ ë¬¸ìì—´ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
 function timeToStr(mins) {
     const h = String(Math.floor(mins / 60)).padStart(2, "0");
     const m = String(mins % 60).padStart(2, "0");
     return `${h}:${m}`;
 }
 
-// ½Ã°£ °ªÀ» px À§Ä¡·Î º¯È¯
+// ì‹œê°„(ë¶„ ë‹¨ìœ„)ì„ íŠ¸ë™ ìƒì˜ px ìœ„ì¹˜ë¡œ ë³€í™˜
 function valueToPx(val) {
     return ((val - minTime) / (maxTime - minTime)) * trackWidth;
 }
 
-// px À§Ä¡¸¦ ½Ã°£ °ªÀ¸·Î º¯È¯ (INTERVAL ´ÜÀ§·Î º¸Á¤)
+// px ìœ„ì¹˜ë¥¼ ì‹œê°„(ë¶„ ë‹¨ìœ„) ê°’ìœ¼ë¡œ ë³€í™˜ (INTERVAL ë‹¨ìœ„ë¡œ ë°˜ì˜¬ë¦¼)
 function pxToValue(px) {
+    // px ìœ„ì¹˜ë¥¼ ì „ì²´ íŠ¸ë™ ë¹„ìœ¨ë¡œ í™˜ì‚° â†’ ì‹œê°„(ë¶„)ìœ¼ë¡œ ë³€í™˜ â†’ intervalValue ë‹¨ìœ„ë¡œ ë°˜ì˜¬ë¦¼
     let v = Math.round((px / trackWidth) * (maxTime - minTime) / intervalValue) * intervalValue + minTime;
+    // minTime ~ maxTime ë²”ìœ„ë¡œ ì œí•œ
     v = Math.max(minTime, Math.min(v, maxTime));
     return v;
 }
 
-
-// ½½¶óÀÌ´õ UI ¾÷µ¥ÀÌÆ® (À§Ä¡¿Í ¶óº§ ¹İ¿µ)
+// ìŠ¬ë¼ì´ë” UIë¥¼ í˜„ì¬ ê°’ì— ë§ê²Œ ê°±ì‹ í•˜ëŠ” í•¨ìˆ˜
 function updateSliderUI() {
     const minPx = valueToPx(currentMin);
     const maxPx = valueToPx(currentMax);
 
     const thumbWidth = thumbMin.offsetWidth;
 
-    // ½½¶óÀÌ´õ Ä¿¼­ À§Ä¡ Á¶Á¤
+    // ìŠ¬ë¼ì´ë” í•¸ë“¤(thumb) ìœ„ì¹˜ ì¡°ì •
     thumbMin.style.left = `${minPx - thumbWidth / 2}px`;
     thumbMax.style.left = `${maxPx - thumbWidth / 2}px`;
 
-    // ¼±ÅÃµÈ ¹üÀ§ Ç¥½Ã
+    // ì„ íƒëœ ë²”ìœ„ í‘œì‹œ ë°” ìœ„ì¹˜ì™€ ê¸¸ì´ ì¡°ì •
     sliderRange.style.left = `${minPx}px`;
-    sliderRange.style.width = `${maxPx - minPx - 9}px`; // -9Àº Ä¿¼­ º¸Á¤¿ë
+    sliderRange.style.width = `${maxPx - minPx - 9}px`; // -9ëŠ” í•¸ë“¤ ë‘ê»˜ ë³´ì •
 
-    // ¶óº§ ¾÷µ¥ÀÌÆ®
+    // ë¼ë²¨ì— í˜„ì¬ ì‹œê°„ í‘œì‹œ
     labelMin.textContent = timeToStr(currentMin);
     labelMax.textContent = timeToStr(currentMax);
 }
 
-// µå·¡±× »óÅÂ °ü¸®
+// ë“œë˜ê·¸ ì¤‘ì¸ í•¸ë“¤ ì •ë³´ ("min" ë˜ëŠ” "max")
 let dragging = null;
 
-// Ä¿¼­ ´©¸¦ ¶§ µå·¡±× ½ÃÀÛ
+// í•¸ë“¤ í´ë¦­(í„°ì¹˜) ì‹œ ë“œë˜ê·¸ ì‹œì‘
 function onDrag(e, type) {
-    dragging = type; // "min" ¶Ç´Â "max"
-    document.body.style.userSelect = "none"; // µå·¡±× Áß ÅØ½ºÆ® ¼±ÅÃ ¹æÁö
+    dragging = type; // "min" ë˜ëŠ” "max" ì €ì¥
+    document.body.style.userSelect = "none"; // ë“œë˜ê·¸ ì¤‘ í…ìŠ¤íŠ¸ ì„ íƒ ë°©ì§€
 }
 
-// µå·¡±× Áß ¸¶¿ì½º ÀÌµ¿ Ã³¸®
+// ë“œë˜ê·¸ ì¤‘ ë§ˆìš°ìŠ¤/í„°ì¹˜ ì´ë™ ì²˜ë¦¬
 function onMove(e) {
     if (!dragging) return;
 
     const rect = track.getBoundingClientRect();
+    // ë§ˆìš°ìŠ¤ ë˜ëŠ” í„°ì¹˜ ìœ„ì¹˜ë¥¼ íŠ¸ë™ ê¸°ì¤€ pxë¡œ ê³„ì‚°
     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-    let val = pxToValue(x); // À§Ä¡¸¦ ½Ã°£ °ªÀ¸·Î º¯È¯
+    let val = pxToValue(x); // px ìœ„ì¹˜ë¥¼ ì‹œê°„(ë¶„) ê°’ìœ¼ë¡œ ë³€í™˜
 
-    // min ¶Ç´Â max °ª ¾÷µ¥ÀÌÆ® (¹üÀ§ º¸Á¤)
+    // ë“œë˜ê·¸ ì¤‘ì¸ í•¸ë“¤ì— ë”°ë¼ ê°’ ê°±ì‹  (ìµœì†Œ/ìµœëŒ€ê°’ì´ ê²¹ì¹˜ì§€ ì•Šë„ë¡ ë³´ì •)
     if (dragging === "min") {
-        currentMin = Math.min(val, currentMax - intervalValue); // <- ¿©±â ¼öÁ¤
+        currentMin = Math.min(val, currentMax - intervalValue);
     } else if (dragging === "max") {
-        currentMax = Math.max(val, currentMin + intervalValue); // <- ¿©±â ¼öÁ¤
+        currentMax = Math.max(val, currentMin + intervalValue);
     }
 
     updateSliderUI();
     saveStateToUrl();
 }
 
-// µå·¡±× Á¾·á
+// ë“œë˜ê·¸ ì¢…ë£Œ ì²˜ë¦¬
 function onUp() {
     dragging = null;
-    document.body.style.userSelect = ""; // ´Ù½Ã ÅØ½ºÆ® ¼±ÅÃ °¡´ÉÇÏ°Ô
+    document.body.style.userSelect = ""; // í…ìŠ¤íŠ¸ ì„ íƒ ê°€ëŠ¥ ìƒíƒœë¡œ ë³µêµ¬
 }
 
-// ¸¶¿ì½º/ÅÍÄ¡ ÀÌº¥Æ® µî·Ï
+// í•¸ë“¤ì— ë§ˆìš°ìŠ¤/í„°ì¹˜ ì´ë²¤íŠ¸ ë“±ë¡
 thumbMin.addEventListener("mousedown", e => onDrag(e, "min"));
 thumbMax.addEventListener("mousedown", e => onDrag(e, "max"));
 thumbMin.addEventListener("touchstart", e => onDrag(e, "min"));
@@ -100,48 +102,50 @@ document.addEventListener("touchmove", onMove);
 document.addEventListener("mouseup", onUp);
 document.addEventListener("touchend", onUp);
 
-// Ã¢ Å©±â º¯°æ ½Ã ½½¶óÀÌ´õ ÀçÁ¶Á¤
+// ì°½ í¬ê¸° ë³€ê²½ ì‹œ íŠ¸ë™ ë„ˆë¹„ ì¬ê³„ì‚° ë° UI ê°±ì‹ 
 window.addEventListener("resize", () => {
     trackWidth = track.offsetWidth;
     updateSliderUI();
 });
 
-// DOM ·Îµå ½Ã ÃÊ±â ¼³Á¤
+// DOMContentLoaded ì‹œ íŠ¸ë™ ë„ˆë¹„ ì´ˆê¸°í™”, URL ìƒíƒœ ë¶ˆëŸ¬ì˜¤ê¸°, UI ì´ˆê¸°í™”
 window.addEventListener('DOMContentLoaded', () => {
     trackWidth = track.offsetWidth;
-    loadStatesFromURL();  // URL »óÅÂ ºÒ·¯¿À±â
-    updateSliderUI();     // UI ÃÊ±âÈ­
+    loadStatesFromURL();  // URLì—ì„œ ìƒíƒœ ë¶ˆëŸ¬ì˜¤ê¸°
+    updateSliderUI();     // UI ì´ˆê¸°í™”
 });
 
 // ------------------------------------------------------
-// ½½¶óÀÌ´õ °£°İ(INTERVAL) Á¶ÀıÀ» À§ÇÑ UI ¹× ·ÎÁ÷
+// ìŠ¬ë¼ì´ë” ê°„ê²©(INTERVAL) ê´€ë ¨ UI ë° ë¡œì§
 // ------------------------------------------------------
-// INTERVAL °ü·Ã º¯¼ö
+
+// ì„ íƒ ê°€ëŠ¥í•œ INTERVAL ê°’ ëª©ë¡(ë¶„ ë‹¨ìœ„)
 const INTERVAL_NUMBER = [5, 10, 15, 20, 30, 60];
-let intervalIndex = 0; // ÇöÀç INTERVAL_NUMBERÀÇ ÀÎµ¦½º
-let intervalValue = INTERVAL_NUMBER[intervalIndex]; // ½ÇÁ¦ »ç¿ëÇÒ INTERVAL °ª
+let intervalIndex = 0; // í˜„ì¬ INTERVAL_NUMBERì˜ ì¸ë±ìŠ¤
+let intervalValue = INTERVAL_NUMBER[intervalIndex]; // í˜„ì¬ ì„ íƒëœ INTERVAL ê°’(ë¶„)
 
 const INTERVAL = document.getElementById('intervalNum');
 const intervalDecBtn = document.getElementById('intervalDecBtn');
 const intervalIncBtn = document.getElementById('intervalIncBtn');
 
-// INTERVAL °ª Àû¿ë ÇÔ¼ö
+// INTERVAL ê°’ ë³€ê²½ ì‹œ UI ë° ìŠ¬ë¼ì´ë” ê°±ì‹ 
 function updateInterval(newInterval) {
     intervalValue = newInterval;
-    INTERVAL.textContent = newInterval; // È­¸é¿¡ Ç¥½Ã
+    INTERVAL.textContent = newInterval; // í™”ë©´ì— í‘œì‹œ
     updateSliderUI();
 }
 
-// INTERVAL °¨¼Ò ¹öÆ° Å¬¸¯
+// INTERVAL ê°ì†Œ ë²„íŠ¼ í´ë¦­ ì‹œ
 intervalDecBtn.addEventListener('click', () => {
     intervalIndex = (intervalIndex - 1 + INTERVAL_NUMBER.length) % INTERVAL_NUMBER.length;
     updateInterval(INTERVAL_NUMBER[intervalIndex]);
 });
 
-// INTERVAL Áõ°¡ ¹öÆ° Å¬¸¯
+// INTERVAL ì¦ê°€ ë²„íŠ¼ í´ë¦­ ì‹œ
 intervalIncBtn.addEventListener('click', () => {
     intervalIndex = (intervalIndex + 1) % INTERVAL_NUMBER.length;
     updateInterval(INTERVAL_NUMBER[intervalIndex]);
 });
 
-// pxToValue ÇÔ¼ö¿¡¼­ intervalValue »ç¿ë
+// pxToValue í•¨ìˆ˜ì—ì„œ intervalValueë¥¼ ì‚¬ìš©í•˜ì—¬,
+// ìŠ¬ë¼ì´ë” ê°’ì´ intervalValue ë‹¨ìœ„ë¡œë§Œ ë³€ê²½ë˜ë„ë¡ ì²˜ë¦¬í•©ë‹ˆë‹¤.

@@ -1,37 +1,41 @@
-// ÆäÀÌÁö°¡ ·ÎµåµÉ ¶§ URL¿¡¼­ °ª ºÒ·¯¿À±â
+// í˜ì´ì§€ ë¡œë“œ ì‹œ URLì—ì„œ ìƒíƒœ(ìˆ«ì ë°°ì—´, ìŠ¬ë¼ì´ë” ê°’ ë“±) ë¶ˆëŸ¬ì˜¤ê¸°
 window.addEventListener('DOMContentLoaded', loadStatesFromURL);
 
-// ÇöÀç »óÅÂ(¼ıÀÚ ¹× ½½¶óÀÌ´õ °ª)¸¦ URL¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
+/**
+ * í˜„ì¬ ìƒíƒœ(ìˆ«ì ë°°ì—´, ìŠ¬ë¼ì´ë” ìµœì†Œ/ìµœëŒ€ê°’)ë¥¼ URLì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
+ */
 function saveStateToUrl() {
-    const digitsStr = digits.join(','); // ¼ıÀÚ ¹è¿­À» ¹®ÀÚ¿­·Î º¯È¯ (¿¹: "1,2,3,4,5,6,7")
-    const params = new URLSearchParams(window.location.search); // ÇöÀç URLÀÇ Äõ¸® ÆÄ¶ó¹ÌÅÍ ºÒ·¯¿À±â
+    const digitsStr = digits.join(','); // ìˆ«ì ë°°ì—´ì„ ë¬¸ìì—´ë¡œ ë³€í™˜ (ì˜ˆ: "1,2,3,4,5,6,7")
+    const params = new URLSearchParams(window.location.search); // í˜„ì¬ URLì˜ ì¿¼ë¦¬ íŒŒë¼ë¯¸í„° ì½ê¸°
 
-    params.set('digits', digitsStr);      // ¼ıÀÚ °ª ÀúÀå
-    params.set('sliderMin', currentMin);  // ½½¶óÀÌ´õ ÃÖ¼Ò°ª ÀúÀå
-    params.set('sliderMax', currentMax);  // ½½¶óÀÌ´õ ÃÖ´ë°ª ÀúÀå
+    params.set('digits', digitsStr);      // ìˆ«ì ë°°ì—´ ì €ì¥
+    params.set('sliderMin', currentMin);  // ìŠ¬ë¼ì´ë” ìµœì†Œê°’ ì €ì¥
+    params.set('sliderMax', currentMax);  // ìŠ¬ë¼ì´ë” ìµœëŒ€ê°’ ì €ì¥
 
-    // »õ URL ±¸¼º ¹× ºê¶ó¿ìÀú ÁÖ¼ÒÃ¢¿¡ ¹İ¿µ (ÆäÀÌÁö »õ·Î°íÄ§ ¾øÀÌ)
+    // ìƒˆ URL ìƒì„± í›„, ì£¼ì†Œì°½ì„ ë³€ê²½(í˜ì´ì§€ ìƒˆë¡œê³ ì¹¨ ì—†ì´)
     const newURL = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState({}, '', newURL);
 }
 
-// URL¿¡¼­ »óÅÂ(¼ıÀÚ ¹× ½½¶óÀÌ´õ °ª)¸¦ ºÒ·¯¿À´Â ÇÔ¼ö
+/**
+ * URLì—ì„œ ìƒíƒœ(ìˆ«ì ë°°ì—´, ìŠ¬ë¼ì´ë” ìµœì†Œ/ìµœëŒ€ê°’)ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜
+ */
 function loadStatesFromURL() {
-    const params = new URLSearchParams(window.location.search); // URL Äõ¸® ÆÄ¶ó¹ÌÅÍ ºÒ·¯¿À±â
-    const digitsStr = params.get('digits');                     // ÀúÀåµÈ ¼ıÀÚ ¹®ÀÚ¿­
-    const minParam = parseInt(params.get('sliderMin'), 10);     // ÀúÀåµÈ ½½¶óÀÌ´õ ÃÖ¼Ò°ª
-    const maxParam = parseInt(params.get('sliderMax'), 10);     // ÀúÀåµÈ ½½¶óÀÌ´õ ÃÖ´ë°ª
+    const params = new URLSearchParams(window.location.search); // URLì˜ ì¿¼ë¦¬ íŒŒë¼ë¯¸í„° ì½ê¸°
+    const digitsStr = params.get('digits');                     // ìˆ«ì ë°°ì—´ ë¬¸ìì—´
+    const minParam = parseInt(params.get('sliderMin'), 10);     // ìŠ¬ë¼ì´ë” ìµœì†Œê°’
+    const maxParam = parseInt(params.get('sliderMax'), 10);     // ìŠ¬ë¼ì´ë” ìµœëŒ€ê°’
 
-    // ¼ıÀÚ ¹è¿­ÀÌ ÀÖ´Ù¸é, À¯È¿¼º °Ë»ç ÈÄ Àû¿ë
+    // ìˆ«ì ë°°ì—´ì´ ì¡´ì¬í•˜ë©´ ìœ íš¨ì„± ê²€ì‚¬ í›„ ì ìš©
     if (digitsStr) {
-        const arr = digitsStr.split(',').map(x => parseInt(x, 10)); // ¹®ÀÚ¿­À» ¼ıÀÚ ¹è¿­·Î º¯È¯
+        const arr = digitsStr.split(',').map(x => parseInt(x, 10)); // ë¬¸ìì—´ â†’ ìˆ«ì ë°°ì—´ ë³€í™˜
         if (arr.length === digits.length && arr.every(x => !isNaN(x))) {
-            arr.forEach((v, i) => digits[i] = v); // ÇöÀç ¼ıÀÚ ¹è¿­¿¡ ¹İ¿µ
-            updateDigitsUI(); // UI ¾÷µ¥ÀÌÆ®
+            arr.forEach((v, i) => digits[i] = v); // ê¸°ì¡´ ë°°ì—´ì— ê°’ ë³µì‚¬
+            updateDigitsUI(); // UI ê°±ì‹ 
         }
     }
 
-    // ½½¶óÀÌ´õ °ªÀÌ ¼ıÀÚ¶ó¸é Àû¿ë
+    // ìŠ¬ë¼ì´ë” ìµœì†Œ/ìµœëŒ€ê°’ì´ ìœ íš¨í•˜ë©´ ì ìš©
     if (!isNaN(minParam)) currentMin = minParam;
     if (!isNaN(maxParam)) currentMax = maxParam;
 }

@@ -10,108 +10,382 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[#FFFEE3] w-screen h-screen flex justify-center items-center overflow-hidden">
+<body
+        class="
+        bg-[#FFFEE3]
+        w-screen h-screen
+        flex justify-center items-center
+        overflow-hidden">
   <!-- 12시 까지? -->
   <!-- 상단 페이지 버튼 -->
-  <button onclick="location.reload();" class="absolute w-[10%] h-[10%] left-[20%] top-[8%]
-  bg-[#FDE295] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] shadow-[2px_2px_0px_black]">
+  <button
+          onclick="location.reload();"
+          class="absolute
+          w-[10%] h-[10%]
+          left-[20%] top-[8%]
+          bg-[#FDE295] text-black py-2
+          flex justify-center
+          border-black rounded-2xl border-[5px]
+          shadow-[2px_2px_0px_black]">
     ※타임테이블 페이지
   </button>
-  <a href="page1_dynamic.html" class="absolute w-[8%] h-[10%] left-[30.5%] top-[8%]
-  bg-[#FEE9CE] text-black flex justify-center py-2 border-black rounded-2xl border-[5px] shadow-[2px_2px_0px_black]">
+  <a
+          href="page1_dynamic.html"
+          class="
+          absolute
+          w-[8%] h-[10%]
+          left-[30.5%] top-[8%]
+          bg-[#FEE9CE] text-black py-2
+          flex justify-center
+          border-black rounded-2xl border-[5px]
+          shadow-[2px_2px_0px_black]">
     ※동적으로 변환
   </a>
 
   <!-- ⚪ 메인 컨테이너 (전체 배경 흰색 틀) -->
-  <div class='relative w-[65%] h-[75%] bg-white border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black flex justify-center items-center'>
+  <div
+          class='
+          relative
+          w-[65%] h-[75%]
+          bg-white shadow-[4px_4px_0px_black]
+          border-black border-[5px] rounded-2xl
+          flex justify-center items-center'>
 
-    <div class='absolute w-[86%] h-[45%] top-[50%] left-[5%] bg-[#BBDBF4] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl flex justify-center'>
+    <div
+            class='
+            absolute
+            w-[86%] h-[45%]
+            top-[50%] left-[5%]
+            bg-[#BBDBF4] border-[5px]
+            shadow-[4px_4px_0px_black]
+            border-black rounded-2xl
+            flex justify-center'>
 
       <!-- 상단 탭바 (하단 박스 위에 흰색 헤더) -->
-      <div class='absolute w-[100%] h-[20%] top-0 bg-[#FFF] p-2 border-black  border-b-[5px] rounded-tl-xl rounded-tr-xl  flex items-center text-[20px]'>
+      <div
+              class='
+              absolute
+              w-[100%] h-[20%]
+              top-0
+              bg-[#FFF] p-2 text-[20px]
+              border-black border-b-[5px] rounded-tl-xl rounded-tr-xl
+              flex items-center'>
         시작 시간 | 종료 시간 | 팀 당 배정될 시간
       </div>
 
-      <div class="absolute w-[60%] h-[55%] right-[40%] bottom-[10%]">
-        <input type="text" maxlength="4" value="0100" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="absolute w-[60%] h-[49%] left-[10%] top-0 bg-[#FFF] border-black border-[5px] text-[45px] rounded-xl text-center tracking-[1.0em]">
+      <div
+              class="absolute
+              w-[60%] h-[55%]
+              right-[40%] bottom-[10%]">
+        <input
+                type="text"
+                maxlength="4"
+                value="0100"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="
+                absolute
+                w-[60%] h-[49%]
+                left-[10%] top-0
+                bg-[#FFF] text-[45px] text-center
+                border-black border-[5px] rounded-xl
+                tracking-[1.0em]">
 
-        <p class="absolute w-[15%] h-full text-[30px] right-[15%] top-[25%] " >부터</p>
-        <input type="text" maxlength="4" value="2300" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="absolute w-[60%] h-[49%] right-[10%] bottom-0 bg-[#FFF] border-black border-[5px] text-[45px] rounded-xl text-center tracking-[1.0em]">
+        <p
+                class="
+                absolute
+                w-[15%] h-full
+                right-[15%] top-[25%]
+                text-[30px]
+                " >부터</p>
+        <input
+                type="text"
+                maxlength="4"
+                value="2300"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="absolute
+                w-[60%] h-[49%]
+                right-[10%] bottom-0
+                bg-[#FFF] text-[45px] text-center
+                border-black border-[5px] rounded-xl
+                tracking-[1.0em]">
 
-        <p class="absolute w-[15%] h-full text-[30px] right-[-5%] top-[75%] " >까지</p>
+        <p
+                class="absolute
+                w-[15%] h-full
+                text-[30px]
+                right-[-5%] top-[75%] " >까지
+        </p>
       </div>
-      <input type="text" maxlength="2" value="15" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="absolute w-[15%] h-[25%] left-[65%] top-[50%] bg-[#FFF] border-black border-[5px] text-[45px] rounded-xl text-center">
 
-      <p class="absolute w-[15%] h-full text-[30px] right-[5%] top-[60%] " >분</p>
+      <input
+              type="text"
+              maxlength="2"
+              value="15"
+              oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+              class="absolute
+              w-[15%] h-[25%]
+              left-[65%] top-[50%]
+              bg-[#FFF] text-[45px] text-center
+              border-black border-[5px] rounded-xl">
 
-
-
+      <p
+              class="
+              absolute
+              w-[15%] h-full
+              text-[30px]
+              right-[5%] top-[60%] " >분
+      </p>
 
   </div>
 
     <!-- 🟩 인원 조작 패널 (좌측 파란 영역) -->
-    <div class='absolute w-[45%] h-[40%] right-[50%] bottom-[55%] bg-[#D3D594] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl mt-12 z-20'>
+    <div
+            class='absolute
+            w-[45%] h-[40%]
+            right-[50%] bottom-[55%]
+            bg-[#D3D594] shadow-[4px_4px_0px_black]
+            border-[5px] border-black rounded-2xl
+            mt-12 z-20'>
 
       <!-- 상단 탭바 -->
-      <div class='absolute w-full h-[20%] bg-[#FFF] p-2 border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl z-20 flex items-center text-[20px]'>
+      <div
+              class='
+              absolute
+              w-full h-[20%]
+              bg-[#FFF] z-20 p-2 text-[20px]
+              border-black border-b-[5px] rounded-tl-2xl rounded-tr-2xl
+              flex items-center '>
         전체 인원 수 | 팀 당 인원 수
       </div>
 
-
-
       <!-- 인원 수 입력창 (총 인원 / 팀당 인원) -->
-      <div class="relative w-full h-[30%] top-[40%]">
-        <input type="text" maxlength="3" value="100" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="absolute w-[53%] h-[100%] left-[2%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center ">
+      <div
+              class="relative
+              w-full h-[30%]
+              top-[40%]">
+        <input
+                type="text"
+                maxlength="3"
+                value="100"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="
+                absolute
+                w-[53%] h-[100%]
+                left-[2%]
+                bg-[#FFF] z-20 text-[50px] text-center
+                border-black border-[5px] hover:border-[6px] rounded-xl">
 
-        <p class="absolute w-[10%] h-full text-[30px] right-[33%] top-[50%] " >명</p>
+        <p
+                class="
+                absolute
+                w-[10%] h-full
+                text-[30px]
+                right-[33%] top-[50%] " >명</p>
 
-        <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="absolute w-[12%] h-[100%] left-[68%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center">
+        <input
+                type="text"
+                maxlength="1"
+                value="5"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="
+                absolute
+                w-[12%] h-[100%]
+                left-[68%]
+                bg-[#FFF]  z-20 text-[50px] text-center
+                border-black border-[5px] hover:border-[6px] rounded-xl">
 
-        <p class="absolute w-[20%] h-full text-[30px] left-[82%] top-[50%] " >명씩</p>
+        <p
+                class="
+                absolute
+                w-[20%] h-full
+                text-[30px]
+                left-[82%] top-[50%]">명씩
+        </p>
       </div>
 
     </div>
 
     <!-- 🟪 날짜/요일 조작 패널 (우측 보라 영역) -->
-    <div class='absolute w-[43%] h-[35%] right-[5%] bottom-[38%] bg-[#FFC5D3] border-[5px] shadow-[4px_4px_0px_black] border-black rounded-2xl mt-12 z-20'>
+    <div
+            class='
+            absolute
+            w-[43%] h-[35%]
+            right-[5%] bottom-[38%]
+            bg-[#FFC5D3] shadow-[4px_4px_0px_black] mt-12 z-20
+            border-[5px] border-black rounded-2xl'>
 
       <!-- 상단 탭바 -->
-      <div class='absolute w-full h-[20%] bg-[#FFF] p-2 border-black border-b-[5px] rounded-tl-xl rounded-tr-xl z-20 flex items-center text-[20px]'>
+      <div
+              class='
+              absolute
+              w-full h-[20%]
+              bg-[#FFF] p-2 z-20 text-[20px]
+              border-black border-b-[5px] rounded-tl-xl rounded-tr-xl
+              flex items-center'>
         시작일 | 기간
       </div>
 
 
       <!-- 날짜 입력창 (날짜 / 요일) -->
-      <div class="relative w-full h-[30%] top-[40%]">
-        <input type="text" maxlength="2" value="10" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="absolute w-[40%] h-[100%] left-[5%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center ">
+      <div
+              class="relative w-full h-[30%] top-[40%]">
+        <input
+                type="text"
+                maxlength="2"
+                value="10"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="
+                absolute
+                w-[40%] h-[100%]
+                left-[5%]
+                bg-[#FFF] text-center text-[50px] z-20
+                border-black border-[5px] rounded-xl hover:border-[6px]
+                ">
 
-        <p class="absolute w-[20%] h-full text-[30px] right-[33%] top-[50%] " >일부터</p>
+        <p
+                class="
+                absolute
+                w-[20%] h-full
+                text-[30px]
+                right-[33%] top-[50%] " >일부터
+        </p>
 
-        <input type="text" maxlength="1" value="5" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-               class="absolute w-[12%] h-[100%] left-[68%] bg-[#FFF] border-black border-[5px] hover:border-[6px] rounded-xl z-20 text-[50px] text-center">
+        <input
+                type="text"
+                maxlength="1"
+                value="5"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                class="
+                absolute
+                w-[12%] h-[100%]
+                left-[68%]
+                bg-[#FFF]  z-20 text-[50px] text-center
+                border-black border-[5px] rounded-xl hover:border-[6px]">
 
-        <p class="absolute w-[20%] h-full text-[30px] left-[82%] top-[50%] " >일간</p>
+        <p
+                class="
+                absolute
+                w-[20%] h-full
+                text-[30px]
+                left-[82%] top-[50%] " >일간
+        </p>
       </div>
 
     </div>
 
     <!-- 🟨 다음 단계로 이동 버튼 -->
-    <a href="page2.html" class='absolute w-[30%] h-[18%] right-[5%] top-0 bg-[#FDE295] border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black  hover:border-[6px] mt-12 z-20 flex justify-center items-center text-[50px]'>
+    <a
+            href="page2.html"
+            class='absolute
+            w-[30%] h-[18%]
+            right-[5%] top-0
+            bg-[#FDE295] mt-12 z-20  hover:border-[6px] text-[50px]
+            border-[5px] rounded-2xl border-black shadow-[4px_4px_0px_black]
+            flex justify-center items-center '>
       ※다음으로※
     </a>
 
     <!-- 🟧 언어 전환 버튼 / 회색 코멘트 박스 -->
-    <div class='absolute w-[12%] h-[10%] right-[36%] top-0 bg-[#EFCCF2] border-[5px] shadow-[2px_2px_0px_black] rounded-2xl border-black mt-12 z-20 flex justify-center items-center'>
+    <div
+            class='absolute
+            w-[12%] h-[10%]
+            right-[36%] top-0
+            bg-[#EFCCF2] shadow-[2px_2px_0px_black] mt-12 z-20
+            border-[5px] border-black rounded-2xl
+            flex justify-center items-center'>
       제작자 소개
     </div>
-    <a href="page1_comment.html" class='absolute w-[12%] h-[7%] right-[36%] top-[11%] bg-[#D9D9D9] border-[5px] shadow-[2px_2px_0px_black] rounded-2xl border-black mt-12 z-20 flex justify-center items-center'>
+    <a
+            onclick="openModal()"
+            class='
+            absolute
+            w-[12%] h-[7%]
+            right-[36%] top-[11%]
+            bg-[#D9D9D9] mt-12 z-20 shadow-[2px_2px_0px_black]
+            border-[5px] border-black rounded-2xl
+            flex justify-center items-center'>
       제작자 코멘트
     </a>
+
+    <!-- 모달 -->
+    <div
+            id="modal"
+            class="
+            hidden fixed inset-0
+            bg-black/10 z-50
+            flex items-center justify-center">
+      <div
+              class="
+            relative
+            w-[30%] h-[50%]
+            bg-[#F8D7DF] pt-12
+            border-4 border-black rounded-xl shadow-lg
+            ">
+        <!-- 모달 상단 -->
+        <div
+                class="
+                absolute
+                top-0 left-0
+                w-full h-12
+                bg-[#F2F2F2] px-4
+                border-b-4 border-black rounded-t-xl
+                flex items-center
+                justify-between">
+          <p
+                  id="modal-mainText"
+                  class="text-base">여기는 모달 상단(제목)입니다람쥐!
+          </p>
+          <button
+                  onclick="closeModal()"
+                  class="p-1">
+            <img
+                    src="../../resource/close.svg"
+                    alt="닫기 버튼"
+                    class="w-5 h-5" />
+          </button>
+        </div>
+
+        <!-- 모달 본문 -->
+        <div
+                class="absolute
+              top-16 left-[5%]
+              right-[5%] w-[90%]
+              h-[70%] bg-[#F2F2F2]
+              rounded-lg p-4">
+          <p
+                  id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐</p>
+        </div>
+
+        <!-- 버튼 -->
+        <button
+                onclick="lastStep()"
+                class="
+              absolute
+              bottom-5 left-[10%]
+              w-[30%] h-[8%]
+              bg-[#F2F2F2] border-4 border-black rounded-md
+              shadow hover:bg-[#D7D7D7] transition
+              active:scale-95
+              last-button">
+          이전으로
+        </button>
+        <button
+                onclick="nextStep()"
+                class="
+              absolute
+              bottom-5 right-[10%]
+              w-[30%] h-[8%]
+              bg-[#F2F2F2] hover:bg-[#D7D7D7] transition shadow
+              border-4 border-black rounded-md
+              active:scale-95
+              next-button">
+          다음으로
+        </button>
+      </div>
+    </div>
+
   </div>
 
-
+  <script src="js/comment_modal.js"></script>
 </body>
 </html>

@@ -22,9 +22,9 @@ document.getElementById("processBtn").addEventListener("click", function () {
     }
 
     // 시간표의 행(row), 열(col), 한 칸에 배정할 학생 수(unit) 설정
-    const row = 4;
-    const col = 3;
-    const unit = 18;
+    const row = 5;
+    const col = 7;
+    const unit = localStorage.getItem("buttonClick")
     const students = []; // Student 객체들을 담을 배열
     const map = new Map(); // 중복 학생(개인번호) 방지를 위한 Map
 
