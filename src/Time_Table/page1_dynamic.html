@@ -17,6 +17,7 @@
         w-screen h-screen
         flex justify-center items-center
 ">
+
 <!-- 12시 까지? -->
 <!-- 상단 페이지 버튼 -->
 <button
@@ -251,7 +252,7 @@
             relative
             w-full h-[30%] top-[33%]">
       <span
-              id="digit0"
+              id="totalPeople100"
               class="
               absolute
               w-[12%] h-[100%]
@@ -259,14 +260,14 @@
               bg-[#FFF] text-[50px] text-center
               border-black border-[5px] rounded-xl "></span>
       <span
-              id="digit1"
+              id="totalPeople10"
               class="
               absolute w-[12%]
               h-[100%] left-[25%]
               bg-[#FFF] text-[50px] text-center
               border-black border-[5px] rounded-xl"></span>
       <span
-              id="digit2"
+              id="totalPeople1"
               class="
               absolute w-[12%]
               h-[100%] left-[40%]
@@ -275,18 +276,18 @@
       <p
               class="
               absolute w-[10%]
-              h-full text-[30px] right-[33%] top-[50%] " >명</p>
+              h-full text-[30px] right-[33%] top-[50%]" >명</p>
       <span
-              id="digit3"
+              id="peoplePerTime"
               class="
               absolute w-[12%]
               h-[100%] left-[68%]
               bg-[#FFF] text-[50px] text-center
-              border-black border-[5px] rounded-xl "></span>
+              border-black border-[5px] rounded-xl"></span>
       <p
               class="
               absolute w-[20%]
-              h-full text-[30px] left-[82%] top-[50%] " >명씩</p>
+              h-full text-[30px] left-[82%] top-[50%]" >명씩</p>
     </div>
 
     <!-- 아래쪽 삼각 버튼들 (인원 수 감소) -->
@@ -412,7 +413,7 @@
             relative
             w-full h-[30%] top-[32%]">
       <span
-              id="digit4"
+              id="whatDay10"
               class="
               absolute
               w-[12%] h-[115%]
@@ -421,7 +422,7 @@
               border-black border-[5px] rounded-xl
               "></span>
       <span
-              id="digit5"
+              id="whatDay1"
               class="
               absolute
               w-[12%] h-[115%]
@@ -437,7 +438,7 @@
               left-[39%] top-[50%]">일부터
       </p>
       <span
-              id="digit6"
+              id="days"
               class="absolute
               w-[12%] h-[115%]
               left-[61%]
@@ -528,91 +529,37 @@
           flex justify-center items-center'>
     제작자 코멘트
   </button>
-
+</div>
   <!-- 모달 -->
-  <div
-          id="modal"
-          class="
-          hidden
-          fixed inset-0
-          bg-black/10 z-50
-          flex items-center justify-center">
-    <div
-            class="
-            relative
-            w-[30%] h-[50%]
-            bg-[#F8D7DF] pt-12
-            border-4 border-black rounded-xl shadow-lg
-            ">
-      <!-- 모달 상단 -->
-      <div
-              class="
-              absolute
-              top-0 left-0
-              w-full h-12
-              bg-[#F2F2F2] px-4
-              border-b-4 border-black rounded-t-xl
-              flex items-center
-              justify-between">
-        <p
-                id="modal-mainText"
-                class="text-base">여기는 모달 상단(제목)입니다람쥐!
-        </p>
-        <button
-                onclick="closeModal()"
-                class="p-1">
-          <img
-                  src="../../resource/close.svg"
-                  alt="닫기 버튼"
-                  class="w-5 h-5" />
-        </button>
-      </div>
+  <div id="modalStart">
 
-      <!-- 모달 본문 -->
-      <div
-              class="absolute
-              top-16 left-[5%]
-              right-[5%] w-[90%]
-              h-[70%] bg-[#F2F2F2]
-              rounded-lg p-4">
-        <p
-                id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐
-        </p>
+    <div id="modal-sub" class="hidden fixed top-5 left-[62%] w-[20%] h-[8%] bg-[#F2F2F2] bg-opacity-30 border-[3px] border-black rounded-2xl text-xs px-2 py-1">
+      <p id="submodal-ContentText" class="mb-2 leading-[10px]">작은 모델창입니다</p>
+      <button onclick="nextStep()" class="absolute right-2 bottom-2 text-xs">다음으로 ></button>
+      <div class="absolute left-1/2 bottom-[-8px] transform -translate-x-1/2 w-0 h-0 border-x-[8px] border-x-transparent border-t-[8px] border-t-[#F2F2F2] filter drop-shadow-[2px_2px_0_black] drop-shadow-[-2px_2px_0_black]"></div>
+    </div>
+    <!-- 모달 -->
+    <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-30 z-[1000] flex items-center justify-center">
+      <div class="relative w-[30%] h-[50%] bg-[#FDE295] border-[5px] border-black rounded-xl shadow-lg pt-12">
+        <div class="absolute top-0 left-0 w-full h-[50px] bg-[#F2F2F2] border-b-[5px] border-black rounded-t-xl flex items-center justify-between px-4">
+          <p id="modal-mainText">여기는 모달 상단(제목)입니다람쥐!</p>
+          <button onclick="closeModal()" class="close-button p-0 bg-none border-none">
+            <img src="../../resource/close.svg" alt="닫기 버튼" />
+          </button>
+        </div>
+        <div class="absolute top-[70px] left-[5%] w-[90%] h-[70%] bg-[#F2F2F2] rounded-xl flex flex-row items-center gap-2 p-2">
+          <div id="modal-Code" class="flex-[4.4] overflow-auto rounded-md max-h-full"><pre><code></code></pre></div>
+          <p id="modal-ContentText" class="flex-[5.5] text-sm text-center break-words">코드 설명 부분입니다람쥐</p>
+        </div>
+        <button onclick="lastStep()" class="absolute bottom-[5%] left-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">이전으로</button>
+        <button onclick="nextStep()" class="absolute bottom-[5%] right-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">다음으로</button>
       </div>
-
-      <!-- 버튼 -->
-      <button
-              onclick="lastStep()"
-              class="
-              absolute
-              bottom-5 left-[10%]
-              w-[30%] h-[8%]
-              bg-[#F2F2F2] border-4 border-black rounded-md
-              shadow hover:bg-[#D7D7D7] transition
-              active:scale-95
-              last-button">
-        이전으로
-      </button>
-      <button
-              onclick="nextStep()"
-              class="
-              absolute
-              bottom-5 right-[10%]
-              w-[30%] h-[8%]
-              bg-[#F2F2F2] hover:bg-[#D7D7D7] transition shadow
-              border-4 border-black rounded-md
-              active:scale-95
-              next-button">
-        다음으로
-      </button>
     </div>
   </div>
 
-</div>
-
-<script src="js/slider.js"></script>
-<script src="js/buttonClick.js"></script>
-<script src="js/rememberPage.js"></script>
-<script src="js/comment_modal.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/buttonClick.js"></script>
+  <script src="js/rememberPage.js"></script>
+  <script src="js/web-study.js"></script>
 </body>
 </html>

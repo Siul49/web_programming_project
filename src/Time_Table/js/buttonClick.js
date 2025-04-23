@@ -12,20 +12,19 @@ const digits = [0, 0, 0, 0, 0, 0, 0]; // 7자리 숫자 배열(초기값 0)
 const digitsUpButtons = document.querySelectorAll('.digitUp');
 const digitsDownButtons = document.querySelectorAll('.digitDown');
 const digitSpans = [
-    document.getElementById("digit0"),
-    document.getElementById("digit1"),
-    document.getElementById("digit2"),
-    document.getElementById("digit3"),
-    document.getElementById("digit4"),
-    document.getElementById("digit5"),
-    document.getElementById("digit6")
+    document.getElementById("totalPeople100"),
+    document.getElementById("totalPeople10"),
+    document.getElementById("totalPeople1"),
+    document.getElementById("peoplePerTime"),
+    document.getElementById("whatDay10"),
+    document.getElementById("whatDay1"),
+    document.getElementById("days")
 ];
 
 // 화면에 숫자 갱신 및 unitNum 변수 갱신, 그리고 특정 URL로 이동(이 부분은 수정 필요)
 function updateDigitsUI() {
     digits.forEach((d, i) => digitSpans[i].textContent = d); // 각 자리 숫자 업데이트
-    localStorage.setItem('peoplePerTime', digits[3]);
-    localStorage.removeItem()
+    localStorage.setItem('unit', digits[3]);
 }
 
 // 숫자 감소 버튼(아래 화살표)에 클릭 이벤트 등록

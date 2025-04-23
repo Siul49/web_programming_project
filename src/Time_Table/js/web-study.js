@@ -2,15 +2,15 @@ let step = 0;
 
 function openModal() {
     document.getElementById("modal").classList.remove("hidden");
-    document.body.classList.add("overflow-hidden");
+    document.getElementById("modalStart").classList.add("overflow-hidden");
     step = 0;
     updateModalVisibility();
 }
 
 function closeModal() {
     document.getElementById("modal").classList.add("hidden");
-    document.getElementById("modal-sub").classList.remove("hidden");
-    document.body.classList.remove("overflow-hidden");
+    document.getElementById("modal-sub").classList.add("hidden");
+    document.getElementById("modalStart").classList.remove("overflow-hidden");
 }
 
 function nextStep() {
@@ -56,11 +56,11 @@ function updateModalText() {
     text.textContent=currentStep.text;
 
     //코드와 텍스트를 함게 출력
-    if (currentStep.code.trim() !== "") { //코드가 있을 때 
+    if (currentStep.code.trim() !== "") { //코드가 있을 때
         code_modal.style.display = "block";
         text_code.innerHTML = currentStep.code;
         text_code.className = "language-html";
-        /*hljs.highlightElement(text_code);*/
+        hljs.highlightElement(text_code);
 
     } else { //코드가 없을 때
         code_modal.style.display = "none";
@@ -72,7 +72,7 @@ function updateModalText() {
 }
 
 const steps = [
-    { 
+    {
         type: "modal",
         text: "허헝~",
         code: "",  // 코드 없음

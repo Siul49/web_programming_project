@@ -1,14 +1,14 @@
 // Student 클래스를 정의하고, 외부에서 import/export로 사용할 수 있게 함
 export class Student {
     // 생성자: 학생의 이름, 개인번호, 가능한 시간 목록, 열(column), 행(row) 정보를 받아 초기화
-    constructor(name, personalNum, possibleTime, column, row) {
+    constructor(name, personalNum, possibleTime, col, row) {
         this.name = name;                  // 학생 이름
         this.personalNum = personalNum;    // 학생 개인 번호
-        this.column = column;              // 시간표의 열(요일 등)
+        this.col = col;              // 시간표의 열(요일 등)
         this.row = row;                    // 시간표의 행(시간대 등)
         this.selectCnt = 0;                // 가능한 시간 개수(선택된 시간 수)
         // 가능한 시간표를 2차원 배열로 초기화 (모두 false로 시작)
-        this.possibleTable = Array.from({ length: row }, () => Array(column).fill(false));
+        this.possibleTable = Array.from({ length: row }, () => Array(col).fill(false));
 
         let cnt = 0; // 현재 처리 중인 행(시간대) 인덱스
         // possibleTime 배열을 순회하며 가능한 시간대를 possibleTable에 표시
@@ -17,7 +17,7 @@ export class Student {
             if (s.length > 7) {
                 // 쉼표(,)로 분리해서 각 요일별로 처리
                 const tokens = s.split(/,\s*/);
-                for (let i = 0; i < column; i++) {
+                for (let i = 0; i < col; i++) {
                     try {
                         const day = this.convertDay(tokens[i]); // 요일 문자열을 숫자로 변환
                         this.possibleTable[cnt][day] = true;    // 해당 시간대, 요일에 true 표시

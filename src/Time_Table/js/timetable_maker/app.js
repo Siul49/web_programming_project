@@ -21,10 +21,10 @@ document.getElementById("processBtn").addEventListener("click", function () {
         return;
     }
 
-    // 시간표의 행(row), 열(col), 한 칸에 배정할 학생 수(unit) 설정
-    const row = 5;
-    const col = 7;
-    const unit = localStorage.getItem("buttonClick")
+    // 시간표: 행(row), 요일: 열(col), 한 칸에 배정할 학생 수: 유닛(unit) 설정
+    let row = Number(localStorage.getItem('row')) || 4;//시간
+    let col = Number(localStorage.getItem('col')) || 3;//일
+    let unit = Number(localStorage.getItem('unit')) || 18;//사람 per 1시간
     const students = []; // Student 객체들을 담을 배열
     const map = new Map(); // 중복 학생(개인번호) 방지를 위한 Map
 
@@ -75,9 +75,83 @@ document.getElementById("processBtn").addEventListener("click", function () {
         }
     }
 
-    // 완성된 시간표를 CSV 문자열로 변환
-    const csvString = Papa.unparse(timeTable);
-    // Blob 객체로 변환 후 파일로 저장 (FileSaver.js의 saveAs 함수 사용)
-    const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
-    saveAs(blob, "schedule.csv");
+        // 1. timeTable(2차원 배열)을 HTML 테이블 문자열로 변환
+        function arrayToHtmlTable(arr) {
+            let html = '<table class=\'\n' +
+                '            relative\n' +
+                '            w-[100%] h-[20%]\n' +
+                '            top-0 p-2\n' +
+                '            bg-[#FFF] text-[20px]\n' +
+                '            border-black border-b-[5px] rounded-tl-xl rounded-tr-xl\n' +
+                '            flex items-center\n' +
+                '            \'">\n';
+            arr.forEach(row => {
+                html += '<tr>';
+                row.forEach(cell => {
+                    html += `<td style="padding:4px 8px;">${cell}</td>`;
+                });
+                html += '</tr>\n';
+            });
+            html += '</table>';
+            return html;
+        }
+
+    // 2. HTML 전체 문서로 감싸기 (표만 저장하고 싶다면 이 부분 생략 가능)
+        function wrapHtml(bodyContent) {
+            return `
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+    <meta charset="UTF-8">
+    
+    <title>시간표</title>
+    <!-- Tailwind CSS로 빌드된 style.css 불러오기 -->
+      <link rel="stylesheet" href="css/style.css"/>
+      <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="
+        bg-[#FEE9CE]
+        w-screen h-screen
+        flex justify-center items-center
+">
+
+<!-- 12시 까지? -->
+<!-- 상단 페이지 버튼 -->
+<button
+        onclick="location.reload();"
+        class="absolute
+               w-[10%] h-[10%]
+               left-[20%] top-[8%]
+               bg-[#FDE295]
+               text-black
+               flex justify-center
+               py-2
+               border-black border-[5px] rounded-2xl
+               shadow-[2px_2px_0px_black] ">
+  ※타임테이블 페이지
+</button>
+<div
+        class="
+        relative
+        w-[65%] h-[75%]
+        bg-white
+        border-[5px]  border-black
+        shadow-[4px_4px_0px_black]
+        rounded-2xl
+        flex justify-center items-center
+        ">
+    ${bodyContent}
+</div>
+    </body>
+    </html>
+    `;
+        }
+
+    // 3. 변환 및 저장
+        const htmlTableString = arrayToHtmlTable(timeTable);
+        const fullHtml = wrapHtml(htmlTableString);
+        const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8;" });
+        saveAs(blob, "schedule.html");
+
 });
+
