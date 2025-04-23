@@ -27,6 +27,23 @@ function lastStep() {
     updateModalVisibility();  // 텍스트 업데이트
 }
 
+document.addEventListener("keydown", function (event) {
+    const modal = document.getElementById("modal");
+    const modalSub = document.getElementById("modal-sub");
+
+    const isModalOpen = modal && !modal.classList.contains("hidden");
+    const isModalSubOpen = modalSub && !modalSub.classList.contains("hidden");
+
+    if (!isModalOpen && !isModalSubOpen) return;
+
+    if (event.key === "ArrowRight") {
+        nextStep();
+    } else if (event.key === "ArrowLeft") {
+        lastStep();
+    }
+});
+
+
 function updateModalVisibility() {
     const modal = document.getElementById("modal");
     const modalSub = document.getElementById("modal-sub");
@@ -153,7 +170,7 @@ const steps = [
     },{
         type: "modal",
         text: "구조를 다루는 다른 태그가 하나 더 있는데" +
-            "<br>바로 &lt;div&gt; 태그예요!</div>" +
+            "<br>바로 &lt;div&gt; 태그예요!" +
             "<br>" +
             "<br>&lt;div&gt; : 구역을 나누는 블록" +
             "<br>" +
@@ -176,12 +193,12 @@ const steps = [
     },{
         type: "modal-sub",
         text: "아까 HTML은 뼈대를 구성하는 언어라고 했는데," +
-            "<br>주로 &lt;div&gt; 태그를 활용해서 그룹을 지어" +
-            "<br>웹페이지 뼈대를 구성해요!",
+            "<br>주로 &lt;div&gt; 태그를 활용해서 그룹을 지어 웹페이지 뼈대를 구성해요!"
     },{
         type: "modal",
         text: "HTML에서 글을 작성할 수 있는" +
             "<br>&lt;p&gt; 태그에 대해 알려드릴게요!" +
+            "<br>" +
             "<br>&lt;p&gt; : 문단, 일반 텍스트 작성" +
             "<br>웹페이지에서 일반 텍스트를 쓸 때" +
             "<br>가장 기본적으로 쓰이는 태그예요!",
@@ -234,5 +251,113 @@ const steps = [
             "  &lt;button&gt;클릭!&lt;/button&gt;<br>" +
             "  &lt;p&gt;위 버튼을 클릭하세요!&lt;/p&gt;<br>" +
             "&lt;/div&gt;<br>",
-    },
+    },{
+        type: "modal",
+        text: "다음은 CSS에 대해 알아보아요!",
+        code: "",
+    },{
+        type: "modal",
+        text: "CSS는 &lt;태그&gt;, .클래스, #아이디를 선택해" +
+            "<br>원하는 부분만 예쁘게 꾸며주는 언어예요!",
+        code: "",
+    },{
+        type: "modal",
+        text: "HTML로 박스를 만든 후에" +
+            "<br>CSS를 이용해서 꾸밀 수 있어요." +
+            "<br>" +
+            "<br>background-color : 배경 색" +
+            "<br>border-radus : 테두리 모서리 반경" +
+            "<br>padding : 안쪽 여백" +
+            "<br>margin : 바깥 여백",
+        code: "background-color: #FFFEE3;" +
+            "<br>border-radius: 8px;" +
+            "<br>padding: 10px;" +
+            "<br>margin: 20px;",
+    },{
+        type: "modal",
+        text: "글자 스타일도 바꿀 수 있어요!" +
+            "<br>" +
+            "<br>font-family : 폰트 종류 설정" +
+            "<br>font-size : 글자 크기 조절" +
+            "<br>font-weight : 글자 굵기" +
+            "<br>color : 글자 색깔" +
+            "<br>" +
+            "<br>이 코드는 글자 크기와 굵기," +
+            "<br>색상을 지정하는 코드예요!",
+        code: "p {" +
+            "<br>font-family: 'TAEBAEKfont';" +
+            "<br>font-size: 16px;" +
+            "<br>font-weight: bold;" +
+            "<br>color: blue;" +
+            "<br>}",
+    },{
+        type: "modal",
+        text: "위치를 조정하는 방법에 대해 알려드릴게요!" +
+            "<br>" +
+            "<br>display : 요소의 배치 방식" +
+            "<br>justify : 가로 정렬" +
+            "<br> content : 아이템들을 정렬하기" +
+            "<br>align : 세로 정렬" +
+            "<br> itmes : 하나하나 방향 정렬",
+        code: "main {" +
+            "<br>display: flex;" +
+            "<br>justify-content: center; /* 가로 */" +
+            "<br>align-items: center; /* 세로 */" +
+            "<br>}",
+    },{
+        type: "modal",
+        text: "다음으로 알려드릴 속성은 position 속성이에요!" +
+            "<br>position은 정렬이 어떻게 되는지 알려주는 속성으로," +
+            "<br>속성값으로 absolute와 relative를 자주 써요!",
+        code: "",
+    },{
+        type: "modal",
+        text: "relative : 원래 위치 기준으로 이동 가" +
+            "<br>" +
+            "<br>absolute : 가장 가까운 position이 있는" +
+            "<br>조상 기준으로 위치 고정",
+        code: "<head><br>" +
+            "  <style><br>" +
+            "    .parent {<br>" +
+            "      position: relative;<br>" +
+            "      width: 300px;<br>" +
+            "      height: 200px;<br>" +
+            "     }<br>" +
+            "<br>" +
+            "    .child {<br>" +
+            "      position: absolute;<br>" +
+            "      width: 100px;<br>" +
+            "      height: 50px;<br>" +
+            "    }<br>" +
+            "  </style><br>" +
+            "</head><br>" +
+            "<body><br>" +
+            "  <div class=\"parent\"><br>" +
+            "    부모 박스<br>" +
+            "    <div class=\"child\">자식 박스</div><br>" +
+            "  </div><br>" +
+            "</body><br>" +
+            "</html>",
+    },{
+        type: "modal-sub",
+        text: "큰 흰색 박스가 부모요소가 되며," +
+            "<br>position값은 relative를 가져요!",
+    },{
+        type: "modal-sub",
+        text: "내부 요소가 자식 요소가 되며," +
+            "<br>position값은 absolute를 가져요!",
+    },{
+        type: "modal",
+        text: "저희가 준비한 내용은 여기까지예요!" +
+            "<br>" +
+            "<br>잘 이해되셨나요?",
+        code: "",
+    },{
+        type: "modal",
+        text: "이제 직접 만들어보면서" +
+            "<br>궁금한 게 생기면 언제든 다시 열어보세요 :)" +
+            "<br>" +
+            "<br>(계속해서 업데이트 할 예정이니 많은 기대해주세요)",
+        code: "",
+    }
 ];

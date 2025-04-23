@@ -407,8 +407,7 @@
                 class="w-65 h-31">
       </button>
     </div>
-
-    <!-- 날짜 입력창 (날짜 / 요일) -->
+    <!--/ 요일) -->
     <div
             class="
             relative
@@ -453,6 +452,7 @@
               text-[30px] left-[77%] top-[50%]
               ">일간</p>
     </div>
+    <!-- 날짜 입력창 (날짜) -->
 
     <!-- 아래쪽 삼각 버튼들 (날짜 감소) -->
     <div
@@ -517,7 +517,7 @@
           bg-[#EFCCF2] shadow-[2px_2px_0px_black] mt-12 z-20
           border-[5px] border-black rounded-2xl
           flex justify-center items-center'>
-    제작자 소개
+    TEAM 3조
   </div>
   <button
           onclick="openModal()"
@@ -534,8 +534,8 @@
 <!-- 모달 -->
 <div id="modalStart">
   <div id="modal-sub" class="hidden fixed inset-0 bg-black bg-opacity-30 z-[1001]">
-    <div class="relative left-[60%] top-[3%] w-[20%] min-h-[8%] bg-[#F2F2F2] border-[3px] border-black rounded-2xl text-xs px-2 py-1">
-      <p id="submodal-ContentText" class="m-2 leading-[10px]">작은 모달창입니다</p>
+    <div class="relative left-[60%] top-[3%] w-[22%] min-h-[8%] bg-[#F2F2F2] border-[3px] border-black rounded-2xl text-xs px-2 py-1">
+      <p id="submodal-ContentText" class="m-2 leading-normal">작은 모달창입니다</p>
       <button onclick="lastStep()" class="absolute left-2 bottom-2 text-xs"><- 이전으로</button>
       <button onclick="nextStep()" class="absolute right-2 bottom-2 text-xs">다음으로 -></button>
       <div class="absolute left-1/2 bottom-[-8px] transform -translate-x-1/2 w-0 h-0 border-x-[8px] border-x-transparent border-t-[8px] border-t-[#F2F2F2] filter drop-shadow-[2px_2px_0_black] drop-shadow-[-2px_2px_0_black]"></div>
@@ -546,14 +546,14 @@
   <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-30 z-[1000] flex items-center justify-center">
     <div class="relative w-[40%] h-[50%] bg-[#FDE295] border-[5px] border-black rounded-xl shadow-lg pt-12">
       <div class="absolute top-0 left-0 w-full h-[50px] bg-[#F2F2F2] border-b-[5px] border-black rounded-t-xl flex items-center justify-between px-4">
-        <p id="modal-mainText">여기는 모달 상단(제목)입니다람쥐!</p>
+        <p id="modal-mainText">개발자 코멘트</p>
         <button onclick="closeModal()" class="close-button p-0 bg-none border-none">
           <img src="../../resource/close.svg" alt="닫기 버튼"/>
         </button>
       </div>
       <div class="absolute top-[70px] left-[5%] w-[90%] h-[70%] bg-[#F2F2F2] rounded-xl flex flex-row items-center gap-2 px-4 py-2">
         <div id="modal-Code" class="flex-[4.4] overflow-auto rounded-md max-h-full"><pre><code></code></pre></div>
-        <p id="modal-ContentText" class="flex-[5.5] text-sm text-center break-words">코드 설명 부분입니다람쥐</p>
+        <p id="modal-ContentText" class="flex-[5.5] text-lg text-center break-words">코드 설명 부분입니다람쥐</p>
       </div>
       <button onclick="lastStep()" class="absolute bottom-[5%] left-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">이전으로</button>
       <button onclick="nextStep()" class="absolute bottom-[5%] right-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">다음으로</button>

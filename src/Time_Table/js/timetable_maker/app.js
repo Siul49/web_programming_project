@@ -22,9 +22,9 @@ document.getElementById("processBtn").addEventListener("click", function () {
     }
 
     // 시간표: 행(row), 요일: 열(col), 한 칸에 배정할 학생 수: 유닛(unit) 설정
-    let row = Number(localStorage.getItem('row')) || 4;//시간
-    let col = Number(localStorage.getItem('col')) || 3;//일
-    let unit = Number(localStorage.getItem('unit')) || 18;//사람 per 1시간
+    let row = /*Number(localStorage.getItem('row')) ||*/ 4;//시간
+    let col = /*Number(localStorage.getItem('col')) ||*/ 3;//일
+    let unit = /*Number(localStorage.getItem('unit')) ||*/18;//사람 per 1시간
     const students = []; // Student 객체들을 담을 배열
     const map = new Map(); // 중복 학생(개인번호) 방지를 위한 Map
 
@@ -75,83 +75,106 @@ document.getElementById("processBtn").addEventListener("click", function () {
         }
     }
 
-        // 1. timeTable(2차원 배열)을 HTML 테이블 문자열로 변환
-        function arrayToHtmlTable(arr) {
-            let html = '<table class=\'\n' +
-                '            relative\n' +
-                '            w-[100%] h-[20%]\n' +
-                '            top-0 p-2\n' +
-                '            bg-[#FFF] text-[10px]\n' +
-                '            border-black border-b-[5px] rounded-tl-xl rounded-tr-xl\n' +
-                '            flex items-center\n' +
-                '            \'">\n';
-            arr.forEach(row => {
-                html += '<tr>';
-                row.forEach(cell => {
-                    html += `<td style="padding:4px 8px;">${cell}</td>`;
-                });
-                html += '</tr>\n';
+    // 1. timeTable(2차원 배열)을 HTML 테이블 문자열로 변환
+    function arrayToHtmlTable(arr) {
+        const rowCount = arr.length;
+        let html = ''; // 테이블 태그 없이 내용만 반환
+
+        arr.forEach((row, rowIndex) => {
+            html += `<tr style="height: ${100 / rowCount}%;">`;
+            row.forEach(cell => {
+                html += `<td class="break-all text-wrap p-1 border border-black align-top">${cell}</td>`;
             });
-            html += '</table>';
-            return html;
-        }
+            html += '</tr>';
+        });
 
-    // 2. HTML 전체 문서로 감싸기 (표만 저장하고 싶다면 이 부분 생략 가능)
-        function wrapHtml(bodyContent) {
-            return `
-    <!DOCTYPE html>
-    <html lang="ko">
-    <head>
-    <meta charset="UTF-8">
-    
-    <title>시간표</title>
-    <!-- Tailwind CSS로 빌드된 style.css 불러오기 -->
-      <link rel="stylesheet" href="css/style.css"/>
-      <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="
-        bg-[#FEE9CE]
-        w-screen h-screen
-        flex justify-center items-center
-">
+        return html;
+    }
 
-<!-- 12시 까지? -->
-<!-- 상단 페이지 버튼 -->
-<button
-        onclick="location.reload();"
-        class="absolute
-               w-[10%] h-[10%]
-               left-[20%] top-[8%]
-               bg-[#FDE295]
-               text-black
-               flex justify-center
-               py-2
-               border-black border-[5px] rounded-2xl
-               shadow-[2px_2px_0px_black] ">
-  ※타임테이블 페이지
-</button>
-<div
-        class="
-        relative
-        w-[65%] h-[75%]
-        bg-white
-        border-[5px]  border-black
-        shadow-[4px_4px_0px_black]
-        rounded-2xl
-        flex justify-center items-center
-        ">
-    ${bodyContent}
-</div>
-    </body>
-    </html>
-    `;
-        }
+// 2. HTML 전체 문서로 감싸기
+    function wrapHtml(bodyContent) {
+        return `
+            <!DOCTYPE html>
+            <html lang="ko">
+            <head>
+            <meta charset="UTF-8">
+            
+            <title>시간표</title>
+                <style>
+                    @font-face {
+                        font-family: 'TAEBAEKfont';
+                        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKfont.woff2') format('woff2');
+                        font-weight: normal;
+                        font-style: normal;
+                    }
+                    
+                    /* 테이블 관련 추가 스타일 */
+                    table, tbody, tr, td {
+                        box-sizing: border-box;
+                    }
+                    
+                    table {
+                        width: 100%;
+                        height: 100%;
+                        table-layout: fixed;
+                    }
+                    
+                    td {
+                        vertical-align: top;
+                        word-break: break-all;
+                        overflow-wrap: break-word;
+                        padding: 4px;
+                    }
+                </style>
+                <script src="https://cdn.tailwindcss.com"></script>
+            </head>
+            <body class="
+                bg-[#FEE9CE]
+                w-screen h-screen
+                flex justify-center items-center
+            ">
+            
+            <!-- 상단 페이지 버튼 -->
+            <button
+                    onclick="location.reload();"
+                    class="absolute
+                           w-[10%] h-[10%]
+                           left-[20%] top-[8%]
+                           bg-[#FDE295]
+                           text-black
+                           flex justify-center
+                           py-2
+                           border-black border-[5px] rounded-2xl
+                           shadow-[2px_2px_0px_black] ">
+              ※타임테이블 페이지
+            </button>
+            <div
+                  class="
+                    relative
+                    w-[65%] h-[75%]
+                    bg-white
+                    border-[5px] border-black
+                    shadow-[4px_4px_0px_black]
+                    rounded-2xl
+                    overflow-auto
+                  "
+            >
+                  <table class="w-full h-full table-fixed border-collapse text-m">
+                  <tbody class="h-full">
+                        ${bodyContent}
+                  </tbody>
+                </table>
+            </div>
+            </body>
+            </html>
+        `;
+    }
+
 
     // 3. 변환 및 저장
-        const htmlTableString = arrayToHtmlTable(timeTable);
-        const fullHtml = wrapHtml(htmlTableString);
-        const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8;" });
-        saveAs(blob, "schedule.html");
-
+    const htmlTableString = arrayToHtmlTable(timeTable);
+    const fullHtml = wrapHtml(htmlTableString);
+    const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8;" });
+    saveAs(blob, "schedule.html");
 });
 
