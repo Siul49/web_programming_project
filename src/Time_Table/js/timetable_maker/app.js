@@ -81,7 +81,7 @@ document.getElementById("processBtn").addEventListener("click", function () {
                 '            relative\n' +
                 '            w-[100%] h-[20%]\n' +
                 '            top-0 p-2\n' +
-                '            bg-[#FFF] text-[20px]\n' +
+                '            bg-[#FFF] text-[10px]\n' +
                 '            border-black border-b-[5px] rounded-tl-xl rounded-tr-xl\n' +
                 '            flex items-center\n' +
                 '            \'">\n';

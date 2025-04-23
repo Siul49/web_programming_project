@@ -8,7 +8,8 @@
   <!-- Tailwind CSS로 빌드된 style.css 불러오기 -->
   <link rel="stylesheet" href="css/style.css"/>
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 </head>
 
 <body
@@ -530,36 +531,39 @@
     제작자 코멘트
   </button>
 </div>
-  <!-- 모달 -->
-  <div id="modalStart">
-
-    <div id="modal-sub" class="hidden fixed top-5 left-[62%] w-[20%] h-[8%] bg-[#F2F2F2] bg-opacity-30 border-[3px] border-black rounded-2xl text-xs px-2 py-1">
-      <p id="submodal-ContentText" class="mb-2 leading-[10px]">작은 모델창입니다</p>
-      <button onclick="nextStep()" class="absolute right-2 bottom-2 text-xs">다음으로 ></button>
+<!-- 모달 -->
+<div id="modalStart">
+  <div id="modal-sub" class="hidden fixed inset-0 bg-black bg-opacity-30 z-[1001]">
+    <div class="relative left-[60%] top-[3%] w-[20%] min-h-[8%] bg-[#F2F2F2] border-[3px] border-black rounded-2xl text-xs px-2 py-1">
+      <p id="submodal-ContentText" class="m-2 leading-[10px]">작은 모달창입니다</p>
+      <button onclick="lastStep()" class="absolute left-2 bottom-2 text-xs"><- 이전으로</button>
+      <button onclick="nextStep()" class="absolute right-2 bottom-2 text-xs">다음으로 -></button>
       <div class="absolute left-1/2 bottom-[-8px] transform -translate-x-1/2 w-0 h-0 border-x-[8px] border-x-transparent border-t-[8px] border-t-[#F2F2F2] filter drop-shadow-[2px_2px_0_black] drop-shadow-[-2px_2px_0_black]"></div>
-    </div>
-    <!-- 모달 -->
-    <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-30 z-[1000] flex items-center justify-center">
-      <div class="relative w-[30%] h-[50%] bg-[#FDE295] border-[5px] border-black rounded-xl shadow-lg pt-12">
-        <div class="absolute top-0 left-0 w-full h-[50px] bg-[#F2F2F2] border-b-[5px] border-black rounded-t-xl flex items-center justify-between px-4">
-          <p id="modal-mainText">여기는 모달 상단(제목)입니다람쥐!</p>
-          <button onclick="closeModal()" class="close-button p-0 bg-none border-none">
-            <img src="../../resource/close.svg" alt="닫기 버튼" />
-          </button>
-        </div>
-        <div class="absolute top-[70px] left-[5%] w-[90%] h-[70%] bg-[#F2F2F2] rounded-xl flex flex-row items-center gap-2 p-2">
-          <div id="modal-Code" class="flex-[4.4] overflow-auto rounded-md max-h-full"><pre><code></code></pre></div>
-          <p id="modal-ContentText" class="flex-[5.5] text-sm text-center break-words">코드 설명 부분입니다람쥐</p>
-        </div>
-        <button onclick="lastStep()" class="absolute bottom-[5%] left-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">이전으로</button>
-        <button onclick="nextStep()" class="absolute bottom-[5%] right-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">다음으로</button>
-      </div>
     </div>
   </div>
 
-  <script src="js/slider.js"></script>
-  <script src="js/buttonClick.js"></script>
-  <script src="js/rememberPage.js"></script>
-  <script src="js/web-study.js"></script>
+  <!-- 모달 -->
+  <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-30 z-[1000] flex items-center justify-center">
+    <div class="relative w-[40%] h-[50%] bg-[#FDE295] border-[5px] border-black rounded-xl shadow-lg pt-12">
+      <div class="absolute top-0 left-0 w-full h-[50px] bg-[#F2F2F2] border-b-[5px] border-black rounded-t-xl flex items-center justify-between px-4">
+        <p id="modal-mainText">여기는 모달 상단(제목)입니다람쥐!</p>
+        <button onclick="closeModal()" class="close-button p-0 bg-none border-none">
+          <img src="../../resource/close.svg" alt="닫기 버튼"/>
+        </button>
+      </div>
+      <div class="absolute top-[70px] left-[5%] w-[90%] h-[70%] bg-[#F2F2F2] rounded-xl flex flex-row items-center gap-2 px-4 py-2">
+        <div id="modal-Code" class="flex-[4.4] overflow-auto rounded-md max-h-full"><pre><code></code></pre></div>
+        <p id="modal-ContentText" class="flex-[5.5] text-sm text-center break-words">코드 설명 부분입니다람쥐</p>
+      </div>
+      <button onclick="lastStep()" class="absolute bottom-[5%] left-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">이전으로</button>
+      <button onclick="nextStep()" class="absolute bottom-[5%] right-[10%] w-[30%] h-[8%] bg-[#F2F2F2] border-[4px] border-black rounded-lg shadow-md hover:bg-[#D7D7D7] active:scale-[0.98]">다음으로</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/slider.js"></script>
+<script src="js/buttonClick.js"></script>
+<script src="js/rememberPage.js"></script>
+<script src="js/web-study.js"></script>
 </body>
 </html>
