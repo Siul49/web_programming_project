@@ -36,13 +36,13 @@ function updateModalText() {
         last_btn.style.display = "inline-block";
         next_btn.textContent = "다음으로";
     } else if (step === 2) {
-        text.textContent = "모달 창을 한 번 만들어봤어융";
+        text.textContent = "저희 3조의 타임테이블 웹사이트, 어떠셨나요~?";
     } else if (step === 3) {
-        text.textContent = "쓸지 말지는 잘 모르겠으나 괜찮나용?";
+        text.textContent = "여러분 어때요 우리꺼 잘만들었죠~";
     } else if (step === 4) {
-        text.textContent = "그냥... 그렇다구용... 2주 가량 남았는데 파이팅 해보아용~";
+        text.textContent = "우하하하항 종강까지 파이팅 해보아용~";
     } else if (step === 5) {
-        text.textContent = "A+를 향해서~ 빠잉";
+        text.textContent = "우리 모두 A+를 향해서~ 빠잉";
         next_btn.textContent = "끝내기";
     } else {
         closeModal();

@@ -83,7 +83,7 @@ document.getElementById("processBtn").addEventListener("click", function () {
         arr.forEach((row, rowIndex) => {
             html += `<tr style="height: ${100 / rowCount}%;">`;
             row.forEach(cell => {
-                html += `<td class="break-all text-wrap p-1 border border-black align-top">${cell}</td>`;
+                html += `<td class="break-words text-wrap p-1 border border-black align-top">${cell}</td>`;
             });
             html += '</tr>';
         });
@@ -94,39 +94,23 @@ document.getElementById("processBtn").addEventListener("click", function () {
 // 2. HTML 전체 문서로 감싸기
     function wrapHtml(bodyContent) {
         return `
-            <!DOCTYPE html>
+             <!DOCTYPE html>
             <html lang="ko">
             <head>
-            <meta charset="UTF-8">
-            
-            <title>시간표</title>
-                <style>
-                    @font-face {
-                        font-family: 'TAEBAEKfont';
-                        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKfont.woff2') format('woff2');
-                        font-weight: normal;
-                        font-style: normal;
-                    }
-                    
-                    /* 테이블 관련 추가 스타일 */
-                    table, tbody, tr, td {
-                        box-sizing: border-box;
-                    }
-                    
-                    table {
-                        width: 100%;
-                        height: 100%;
-                        table-layout: fixed;
-                    }
-                    
-                    td {
-                        vertical-align: top;
-                        word-break: break-all;
-                        overflow-wrap: break-word;
-                        padding: 4px;
-                    }
-                </style>
-                <script src="https://cdn.tailwindcss.com"></script>
+              <meta charset="UTF-8">
+              <title>시간표</title>
+              <style>
+                @font-face {
+                  font-family: 'TAEBAEKfont';
+                  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKfont.woff2') format('woff2');
+                  font-weight: normal;
+                  font-style: normal;
+                }
+                body {
+                  font-family: 'TAEBAEKfont', sans-serif;
+                }
+              </style>
+              <script src="https://cdn.tailwindcss.com"></script>
             </head>
             <body class="
                 bg-[#FEE9CE]
